@@ -111,10 +111,10 @@ private void printResults(int dayOfMonth)
 	int second = getResources().getInteger(R.integer.second);
 	
 	//Calculate times
-	int dayTotal = (anni - dayOfMonth);
-	int hourTotal = (anni - dayOfMonth)*hour;
-	int minTotal = (anni - dayOfMonth)*minute;
-	int secTotal = (anni - dayOfMonth)*second;
+	int dayTotal = (anni - day);
+	int hourTotal = (anni - day)*hour;
+	int minTotal = (anni - day)*minute;
+	int secTotal = (anni - day)*second;
 	
 	int[] timeArray = {dayTotal, hourTotal, minTotal, secTotal};
 	

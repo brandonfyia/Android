@@ -1,6 +1,6 @@
 <resources>
     
-    <integer name="anniDate">27</integer>
+    <integer name="anniDate">25</integer>
     <integer name="day">1</integer>
     <integer name="hour">24</integer>
     <integer name="minute">1440</integer>
