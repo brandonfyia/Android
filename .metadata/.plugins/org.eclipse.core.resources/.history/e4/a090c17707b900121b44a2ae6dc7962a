@@ -1,9 +1,0 @@
-<resources>
-    
-    <integer name="anniDate">25</integer>
-    <integer name="day">1</integer>
-    <integer name="hour">24</integer>
-    <integer name="minute">1440</integer>
-    <integer name="second">86400</integer>
-    
-</resources>

@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
 		// Title
 		TextView titleText = new TextView(this);
-		titleText.setText(getResources().getString(R.string.app_title));
+		titleText.setText(getResources().getString(R.string.app_name));
 		titleText.setGravity(Gravity.CENTER);
 		titleText.setTextSize(30);
 		ll.addView(titleText);
