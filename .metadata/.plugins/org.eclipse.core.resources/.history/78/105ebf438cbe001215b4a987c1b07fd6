@@ -19,12 +19,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MainActivity.
  */
 public class MainActivity extends Activity {
 
-	/** detailNames is a string array to contain the names for the radio button */
+	/** detailnames is a string array to contain the names for the radio button */
 	String[] detailNames = new String[Movie.values().length];
 
 	/** The movie details. Radio Group. */

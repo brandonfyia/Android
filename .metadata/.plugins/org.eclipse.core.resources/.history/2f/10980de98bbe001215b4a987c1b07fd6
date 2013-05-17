@@ -6,21 +6,16 @@ package com.example.json;
  */
 public enum Movie {
 
-	/* QUESTION: Because these needed to be exactly how the JSON was it ended up giving me ugly strings.
-	 * I know how to hard code better strings but I'm not sure of the right way to dynamically do it.
-	 * Any thoughts?
-	 */
-	
 	/** The Title. */
 	Title ("Ong-Bak (Ong Bak: Muay Thai Warrior)"),
 	
 	/** The Year. */
 	Year ("2005"),
 	
-	/** The MPAA Ratings. */
+	/** The MPA a_ ratings. */
 	MPAA_Ratings ("PG-13"),
 	
-	/** The Movie Run time. */
+	/** The Run time. */
 	RunTime ("107"),
 	
 	/** The Critics_ consensus. */
