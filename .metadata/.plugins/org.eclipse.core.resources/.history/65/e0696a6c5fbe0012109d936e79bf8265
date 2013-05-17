@@ -1,0 +1,30 @@
+package com.example.json;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class JSON {
+	
+	//This class is to build and read back a JSON Object. 
+	
+	public static JSONObject buildJSON()
+	{
+		//Create Movies JSON Array Object
+		JSONArray moviesJArray = new JSONArray();
+		
+		//Create id JSON Object
+		JSONObject titleObject = new JSONObject();
+		titleObject.put("title", movie.set)
+		
+		
+		
+		return null;
+	}
+	
+	public static String readJSON (String selected)
+	{
+		
+		return null;
+	}
+
+}

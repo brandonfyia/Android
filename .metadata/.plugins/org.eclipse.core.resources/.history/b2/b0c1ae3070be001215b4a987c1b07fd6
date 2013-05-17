@@ -1,0 +1,60 @@
+package com.example.json;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class JSON {
+
+	/* This class is to build and read back a JSON Object.
+	 * JSON URL being emulated =
+	 * http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=zns9a4f2hfm94ju3unu4axzk&q=ong+bak&page_limit=1
+	 */
+	
+	public static JSONArray buildJSON() 
+	{
+
+		// Create Movies JSON Array Object
+		JSONArray moviesJArray = new JSONArray();
+
+		try {
+			// Fill in movie details with JSON Objects
+			JSONObject detailsObject = new JSONObject();
+
+			detailsObject.put("title", Movie.Title.setValue());
+			detailsObject.put("year", Movie.Year.setValue());
+			detailsObject.put("mpaa_rating", Movie.MPAA_Ratings.setValue());
+			detailsObject.put("runtime", Movie.RunTime.setValue());
+			detailsObject.put("critics_consensus", Movie.Critics_Consensus.setValue());
+
+			// Add details to Movies JSON Array
+			moviesJArray.put(detailsObject);
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return moviesJArray;
+	}
+
+	public static String readJSON(String selected) 
+	{
+		String result;
+		JSONArray object = buildJSON();
+		
+		try 
+		{
+			result = object.getJSONObject(0).getJSONObject(selected).getString(selected);
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			result = e.toString();
+		}
+		
+		
+		return result;
+	}
+
+}
