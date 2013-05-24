@@ -1,0 +1,47 @@
+package com.example.json;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
+import android.widget.Toast;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class JSON.
+ */
+public class JSON {
+	
+	/**
+	 * Read the JSON.
+	 *
+	 * @param selected passed from MainActivity.java
+	 * @return result passes back the requested info from the JSON.
+	 */
+	public static String readJSON(Context context, JSONObject json, String selected) 
+	{
+		String result;
+		
+		try 
+		{
+			//JSON Array is Movies. object 0 is the first result. get string provides the detail Object.
+			JSONObject object = json.getJSONArray("movies").getJSONObject(0);
+			if (object.getString("year").compareTo("N/A")==0) {
+				Toast toast = Toast.makeText(context, "No movie by that name exists", Toast.LENGTH_LONG);
+				toast.show();
+				result = "";
+			} else {
+				result = object.getString(selected);
+			}
+			
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			result = e.toString();
+		}
+		
+		return result;
+	}
+
+}
