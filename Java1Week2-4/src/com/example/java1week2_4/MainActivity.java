@@ -20,10 +20,11 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,46 +37,38 @@ public class MainActivity extends Activity {
 
 	// Global variables
 	Context _context;
-	LinearLayout _appLayout;
-	String[] _detailNames = new String[5];
-	TextView _resultsView;
 	Boolean _connected = false;
 	JSONObject _json;
-	SearchForm _search;
-	InfoSpinner _infoSpin;
-	ShowResults _results;
+	EditText _searchField;
+	TextView results;
+	Spinner iSpin;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Set Content View
+		setContentView(R.layout.main);
+
+		// Set defaults for variables
+		_searchField = (EditText) findViewById(R.id.searchField);
+		results = (TextView) findViewById(R.id.resultsText);
+		iSpin = (Spinner) findViewById(R.id.infoSpinner);
 		_context = this;
-		_appLayout = new LinearLayout(_context);
-		_appLayout.setOrientation(LinearLayout.VERTICAL);
-
-		// Title Display
-		TextView titleText = new TextView(this);
-		titleText.setText("Movie Info");
-		titleText.setGravity(Gravity.CENTER);
-		titleText.setTextSize(30);
-		_appLayout.addView(titleText);
-
-		// Search Display
-		_search = new SearchForm(_context, "Enter Movie Name", "GO!");
-		_appLayout.addView(_search);
 
 		// Detect Network connection
 		_connected = WebStuff.getConnectionStatus(_context);
 		if (_connected) {
 			Log.i("NETWORK CONNECTION", WebStuff.getConnectionType(_context));
 		} else {
-			//If no connection load last viewed movie details
-			
+			// If no connection load last viewed movie details
+
 			// Warning Display
 			TextView warningText = new TextView(this);
 			warningText.setText("No connection. Viewing last searched movie.");
 			warningText.setGravity(Gravity.CENTER);
 			warningText.setTextSize(30);
-			_appLayout.addView(warningText);
+			// _appLayout.addView(warningText);
 
 			// Load last JSON file
 			Object stored = FileStuff.readObjectFile(_context, "Movie", true);
@@ -91,43 +84,76 @@ public class MainActivity extends Activity {
 			}
 
 			// Set Search Text
-			EditText searchField = _search.getField();
 			try {
-				searchField.setText(_json.getString("title").toString());
+				_searchField.setText(_json.getString("title").toString());
 			} catch (JSONException e) {
 				Log.e("SAVED FILE", "CANT LOAD MOVIE TITLE");
 			}
 		}
 
 		// Search Handler
-		Button searchButton = _search.getButton();
+		Button searchButton = (Button) findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i("CLICK HANDLER", _search.getField().getText().toString());
+				Log.i("CLICK HANDLER", _searchField.getText().toString());
 				// Send text field entry to URL builder and request API
-				getQuote(_search.getField().getText().toString());
+				getQuote(_searchField.getText().toString());
+				// Set spinner back to default
+				iSpin.setSelection(0);
+				// Close keyboard
+				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				inputManager.hideSoftInputFromWindow(getCurrentFocus()
+						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			}
 		});
 
-		// Info Spinner Display
-		_infoSpin = new InfoSpinner(_context);
-		_appLayout.addView(_infoSpin);
+		// Create Info Spinner Display
+		ArrayAdapter<CharSequence> listAdapter = ArrayAdapter
+				.createFromResource(_context, R.array.detailsArray,
+						android.R.layout.simple_spinner_item);
+		listAdapter
+				.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		iSpin.setAdapter(listAdapter);
 
 		// Info Spinner Handler
-		Spinner iSpin = _infoSpin.getSpinner();
 		iSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int pos,
 					long id) {
 				Log.i("DETAIL SELECTED", parent.getItemAtPosition(pos)
 						.toString());
-				//If previous view remove, and then load new requested details
-				_appLayout.removeView(_results);
-				_results = new ShowResults(_context, parent.getItemAtPosition(
-						pos).toString(), _json);
-				_results.setGravity(Gravity.CENTER);
-				_appLayout.addView(_results);
+				//Check to see if JSON has been created yet
+				if (_json != null) {
+					try {
+						//Set selected value
+						String selected = new String(parent.getItemAtPosition(pos).toString());
+						Log.i("DETAIL SELECTED", selected);
+						//If not at default value fetch results
+						if (!selected.matches(getString(R.string.see_details))) {
+							//Change from nice formatting to API formatting
+							//Title
+							if (selected.matches(getString(R.string.title))) {
+								results.setText("Movie Title:\n \t"+_json.getString(getString(R.string.titleAPI)).toString());
+							//Year
+							} else if (selected.matches(getString(R.string.year))) {
+								results.setText("Year Released:\n \t"+_json.getString(getString(R.string.yearAPI)).toString());
+							//Rating
+							} else if (selected.matches(getString(R.string.mpaa_rating))) {
+								results.setText("MPAA Rating:\n \t"+_json.getString(getString(R.string.mpaa_ratingAPI)).toString());
+							//Runtime	
+							} else if (selected.matches(getString(R.string.runtime))) {
+								results.setText("Movie Runtime:\n \t"+_json.getString(getString(R.string.runtimeAPI)).toString()+" minutes");
+							//Critics	
+							} else if (selected.matches(getString(R.string.critics_consensus))) {
+								results.setText("Critics Consensus:\n \t"+_json.getString(getString(R.string.critics_consensusAPI)).toString());
+							}
+						}
+					} catch (JSONException e) {
+						Log.e("RESULTS ERROR", "NO RESULTS");
+						results.setText("No info found. Please double check that the movie title was entered correctly");
+					}
+				}
 			}
 
 			@Override
@@ -135,9 +161,6 @@ public class MainActivity extends Activity {
 
 			}
 		});
-
-		// Set Content View
-		setContentView(_appLayout);
 	}
 
 	/*
@@ -159,7 +182,6 @@ public class MainActivity extends Activity {
 		try {
 			qs = URLEncoder.encode(movieName, "UTF-8");
 		} catch (Exception e) {
-			// TODO: handle exception
 			Log.e("BAD URL", "ENCODING PROBLEM");
 			qs = "";
 		}
@@ -193,8 +215,9 @@ public class MainActivity extends Activity {
 				Log.i("JSON", result);
 				JSONObject resultJSON = new JSONObject(result);
 				try {
-					// JSON Array is Movies. object 0 is the first result. get
-					// string provides the detail Object.
+					/* JSON Array is Movies. object 0 is the first result. get
+					 *  string provides the detail Object.*/
+					
 					if (resultJSON.getString("total").toString().compareTo("0") == 0) {
 						Toast toast = Toast.makeText(_context,
 								"No movie by that name exists",
@@ -203,15 +226,18 @@ public class MainActivity extends Activity {
 					} else {
 						_json = resultJSON.getJSONArray("movies")
 								.getJSONObject(0);
-						//Store object in external memory
+						// Store object in external memory
 						FileStuff.storeObjectFile(_context, "Movie",
 								_json.toString(), true);
+						results.setText("");
 					}
 				} catch (JSONException e) {
 					Log.e("JSON", "JSON OBJECT EXCEPTION");
+					results.setText("No info found. Please double check that the movie title was entered correctly");
 				}
 			} catch (JSONException e) {
 				Log.e("JSON", "JSON OBJECT EXCEPTION");
+				results.setText("No info found. Please double check that the movie title was entered correctly");
 			}
 		}
 	}
