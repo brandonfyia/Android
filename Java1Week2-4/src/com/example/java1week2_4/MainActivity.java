@@ -3,6 +3,9 @@
  */
 package com.example.java1week2_4;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -11,10 +14,14 @@ import org.json.JSONObject;
 
 import com.example.lib.WebStuff;
 
+import android.R.drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -25,6 +32,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -147,6 +156,22 @@ public class MainActivity extends Activity {
 							//Critics	
 							} else if (selected.matches(getString(R.string.critics_consensus))) {
 								results.setText("Critics Consensus:\n \t"+_json.getString(getString(R.string.critics_consensusAPI)).toString());
+							/* 
+							 * Movie Poster
+							 * I for the life of me can't figure out why this isn't working. Please help.
+							 * 
+							 */
+							} else if (selected.matches(getString(R.string.thumbnail))) {
+								results.setText("Poster:\n \t");
+								String link = new String(_json.getJSONObject("posters").getString(getString(R.string.thumbnailAPI).toString()));
+								ImageView iView = new ImageView(_context);
+								try {
+									iView.setImageBitmap(drawable_from_url(link));
+						        } catch(Exception e) {
+						            Log.e("IMAGE", "NO IMAGE");
+						        }
+								LinearLayout ll = (LinearLayout)findViewById(R.layout.main);
+								ll.addView(iView);	
 							}
 						}
 					} catch (JSONException e) {
@@ -173,6 +198,19 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	//Fetch Movie poster
+	Bitmap drawable_from_url(String url) throws java.net.MalformedURLException, java.io.IOException {
+	    Bitmap x;
+
+	    HttpURLConnection connection = (HttpURLConnection)new URL(url) .openConnection();
+
+	    connection.connect();
+	    InputStream input = connection.getInputStream();
+
+	    x = BitmapFactory.decodeStream(input);
+	    return x;
 	}
 
 	// Build URL

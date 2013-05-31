@@ -15,6 +15,7 @@
     <string name="mpaa_rating">MPAA Rating</string>
     <string name="runtime">Runtime</string>
     <string name="critics_consensus">The Critics Consensus</string>
+    <string name="thumbnail">Poster</string>
     
     <!-- API values -->
     <string name="titleAPI">title</string>
@@ -22,6 +23,7 @@
     <string name="mpaa_ratingAPI">mpaa_rating</string>
     <string name="runtimeAPI">runtime</string>
     <string name="critics_consensusAPI">critics_consensus</string>
+    <string name="thumbnailAPI">thumbnail</string>
 
 </resources>
 
