@@ -12,23 +12,9 @@ import java.io.ObjectOutputStream;
 import android.content.Context;
 import android.util.Log;
 
-public class FileStuff {
-	
-	private static FileStuff fileStuffInstance = null;
-	
-	protected FileStuff(){
-	}
-	
-	public static FileStuff getFileStuffInstance(){
-		if (null == fileStuffInstance)
-		{
-			fileStuffInstance = new FileStuff();
-		}
-		return fileStuffInstance;
-	}
-	
-	//Store String file
+public class FileStuffSingleton {
 	@SuppressWarnings("resource")
+	//Store String file
 	public static Boolean storeStringFile(Context context, String fileName, String content, boolean external){
 		try {
 			File file;

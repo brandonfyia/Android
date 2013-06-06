@@ -48,7 +48,6 @@ public class MainActivity extends Activity {
 	EditText _searchField;
 	TextView results;
 	Spinner iSpin;
-	TextView _header;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +60,8 @@ public class MainActivity extends Activity {
 		_searchField = (EditText) findViewById(R.id.searchField);
 		results = (TextView) findViewById(R.id.resultsText);
 		iSpin = (Spinner) findViewById(R.id.infoSpinner);
-		_header = (TextView) findViewById(R.id.header);
 		_context = this;
 
-		//Set Header Default text
-		_header.setText("Search For A Movie");
-		
 		// Detect Network connection
 		_connected = WebStuff.getConnectionStatus(_context);
 		if (_connected) {
@@ -75,11 +70,14 @@ public class MainActivity extends Activity {
 			// If no connection load last viewed movie details
 
 			// Warning Display
-			_header.setText("No connection. Viewing last searched movie.");
-			
+			TextView warningText = new TextView(this);
+			warningText.setText("No connection. Viewing last searched movie.");
+			warningText.setGravity(Gravity.CENTER);
+			warningText.setTextSize(30);
+			// _appLayout.addView(warningText);
 
 			// Load last JSON file
-			Object stored = FileStuff.getFileStuffInstance().readObjectFile(_context, "Movie", true);
+			Object stored = FileStuff.readObjectFile(_context, "Movie", true);
 			if (stored != null) {
 				String temp = (String) stored;
 				try {
@@ -288,14 +286,13 @@ public class MainActivity extends Activity {
 								"No movie by that name exists",
 								Toast.LENGTH_LONG);
 						toast.show();
-						_header.setText("Try Again");
 					} else {
 						_json = resultJSON.getJSONArray("movies")
 								.getJSONObject(0);
 						// Store object in external memory
-						FileStuff.getFileStuffInstance().storeObjectFile(_context, "Movie", _json.toString(), true);
+						FileStuff.getFileStuffInstance().storeObjectFile(_context, "Movie",
+								_json.toString(), true);
 						results.setText("");
-						_header.setText("Movie Found!");
 					}
 				} catch (JSONException e) {
 					Log.e("JSON", "JSON OBJECT EXCEPTION");

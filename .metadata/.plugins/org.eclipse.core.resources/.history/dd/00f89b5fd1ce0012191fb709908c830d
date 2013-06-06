@@ -48,7 +48,7 @@ public class FileStuff {
 	}
 	//Store object
 	@SuppressWarnings("resource")
-	public static Boolean storeObjectFile(Context context, String fileName, Object content, Boolean external){
+	public Boolean storeObjectFile(Context context, String fileName, Object content, Boolean external){
 		try {
 			File file;
 			FileOutputStream fos;
