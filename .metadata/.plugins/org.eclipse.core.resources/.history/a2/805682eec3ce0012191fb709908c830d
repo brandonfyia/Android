@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -174,7 +175,7 @@ public class MainActivity extends Activity {
 												getString(R.string.critics_consensusAPI))
 												.toString());
 								/*
-								 * Movie Poster. I, for the life of me can't
+								 * Movie Poster I, for the life of me can't
 								 * figure out why this isn't working. Please
 								 * help.
 								 */

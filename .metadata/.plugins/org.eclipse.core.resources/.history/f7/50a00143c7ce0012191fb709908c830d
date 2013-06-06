@@ -185,7 +185,11 @@ public class MainActivity extends Activity {
 										"posters").getString(
 										getString(R.string.thumbnailAPI)
 												.toString()));
-								SmartImageView iView = new SmartImageView(_context);
+								SmartImageView iView = new SmartImageView(_context)<com.loopj.android.image.SmartImageView
+									    android:id="@+id/my_image" /><com.loopj.android.image.SmartImageView
+									    android:id="@+id/my_image" /><com.loopj.android.image.SmartImageView
+									    android:id="@+id/my_image" /><com.loopj.android.image.SmartImageView
+									    android:id="@+id/my_image" />;
 								try {
 									iView.setImageUrl(link);
 									LinearLayout ll = (LinearLayout) findViewById(R.layout.main);

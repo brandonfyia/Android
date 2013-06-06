@@ -185,7 +185,7 @@ public class MainActivity extends Activity {
 										"posters").getString(
 										getString(R.string.thumbnailAPI)
 												.toString()));
-								SmartImageView iView = new SmartImageView(_context);
+								SmartImageView iView = (SmartImageView) findViewById(R.id.iView);
 								try {
 									iView.setImageUrl(link);
 									LinearLayout ll = (LinearLayout) findViewById(R.layout.main);
