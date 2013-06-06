@@ -9,7 +9,7 @@
     
     
     <!-- For @arrays/detailsArray -->
-    <string name="see_details">Choose a detail to View</string>
+    <string name="see_details">See Details</string>
     <string name="title">Title</string>
     <string name="year">Year</string>
     <string name="mpaa_rating">MPAA Rating</string>

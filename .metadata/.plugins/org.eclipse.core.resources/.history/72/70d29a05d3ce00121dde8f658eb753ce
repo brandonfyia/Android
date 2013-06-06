@@ -48,7 +48,7 @@ public class FileStuff {
 	}
 	//Store object
 	@SuppressWarnings("resource")
-	public Boolean storeObjectFile(Context context, String fileName, Object content, Boolean external){
+	public static Boolean storeObjectFile(Context context, String fileName, Object content, Boolean external){
 		try {
 			File file;
 			FileOutputStream fos;
@@ -104,7 +104,7 @@ public class FileStuff {
 	
 	//Read object file
 	@SuppressWarnings("resource")
-	public Object readObjectFile(Context context, String fileName, Boolean external){
+	public static Object readObjectFile(Context context, String fileName, Boolean external){
 		Object content = new Object();
 		try {
 			File file;

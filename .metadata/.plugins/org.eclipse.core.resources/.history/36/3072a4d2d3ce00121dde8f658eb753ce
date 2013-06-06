@@ -293,8 +293,6 @@ public class MainActivity extends Activity {
 								.getJSONObject(0);
 						// Store object in external memory
 						FileStuff.getFileStuffInstance().storeObjectFile(_context, "Movie", _json.toString(), true);
-						//Set Text Values
-						_searchField.setText(_json.getString("title").toString());
 						_results.setText("");
 						_header.setText("Movie Found!");
 					}

@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 	JSONObject _json;
 	EditText _searchField;
 	TextView _results;
-	Spinner _iSpin;
+	Spinner iSpin;
 	TextView _header;
 
 	@Override
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 		// Set defaults for variables
 		_searchField = (EditText) findViewById(R.id.searchField);
 		_results = (TextView) findViewById(R.id.resultsText);
-		_iSpin = (Spinner) findViewById(R.id.infoSpinner);
+		iSpin = (Spinner) findViewById(R.id.infoSpinner);
 		_header = (TextView) findViewById(R.id.header);
 		_context = this;
 
@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
 				// Send text field entry to URL builder and request API
 				getQuote(_searchField.getText().toString());
 				// Set spinner back to default
-				_iSpin.setSelection(0);
+				iSpin.setSelection(0);
 				// Close keyboard
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
@@ -121,10 +121,10 @@ public class MainActivity extends Activity {
 						android.R.layout.simple_spinner_item);
 		listAdapter
 				.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		_iSpin.setAdapter(listAdapter);
+		iSpin.setAdapter(listAdapter);
 
 		// Info Spinner Handler
-		_iSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
+		iSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int pos,
 					long id) {
@@ -293,8 +293,6 @@ public class MainActivity extends Activity {
 								.getJSONObject(0);
 						// Store object in external memory
 						FileStuff.getFileStuffInstance().storeObjectFile(_context, "Movie", _json.toString(), true);
-						//Set Text Values
-						_searchField.setText(_json.getString("title").toString());
 						_results.setText("");
 						_header.setText("Movie Found!");
 					}
