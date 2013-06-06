@@ -30,7 +30,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -175,7 +174,11 @@ public class MainActivity extends Activity {
 										+ _json.getString(
 												getString(R.string.critics_consensusAPI))
 												.toString());
-								// Movie Poster
+								/*
+								 * Movie Poster. I, for the life of me can't
+								 * figure out why this isn't working. Please
+								 * help.
+								 */
 							} else if (selected
 									.matches(getString(R.string.thumbnail))) {
 								_results.setText("Poster:\n \t");
@@ -184,19 +187,13 @@ public class MainActivity extends Activity {
 										getString(R.string.thumbnailAPI)
 												.toString()));
 								SmartImageView iView = new SmartImageView(_context);
-								iView.setImageUrl(link);
-								LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-								LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayout);
-								iView.setLayoutParams(lp);
-								ll.addView(iView);
-//								try {
-//									iView.setImageUrl(link);
-//									LinearLayout ll = (LinearLayout) findViewById(R.layout.main);
-//									ll.addView(iView);
-//								} catch (Exception e) {
-//									Log.e("IMAGE", "NO IMAGE");
-//									Log.e("IMAGE", link);
-//								}
+								try {
+									iView.setImageUrl(link);
+									LinearLayout ll = (LinearLayout) findViewById(R.layout.main);
+									ll.addView(iView);
+								} catch (Exception e) {
+									Log.e("IMAGE", "NO IMAGE");
+								}
 							}
 						}
 					} catch (JSONException e) {

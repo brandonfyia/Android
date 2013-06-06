@@ -185,7 +185,7 @@ public class MainActivity extends Activity {
 												.toString()));
 								SmartImageView iView = new SmartImageView(_context);
 								iView.setImageUrl(link);
-								LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+								LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 								LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayout);
 								iView.setLayoutParams(lp);
 								ll.addView(iView);
