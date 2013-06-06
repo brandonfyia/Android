@@ -12,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.lib.WebStuff;
-import com.loopj.android.image.SmartImageView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -186,9 +185,9 @@ public class MainActivity extends Activity {
 										"posters").getString(
 										getString(R.string.thumbnailAPI)
 												.toString()));
-								SmartImageView iView = new SmartImageView(_context);
+								ImageView iView = new ImageView(_context);
 								try {
-									iView.setImageUrl(link);
+									iView.setImageBitmap(drawable_from_url(link));
 									LinearLayout ll = (LinearLayout) findViewById(R.layout.main);
 									ll.addView(iView);
 								} catch (Exception e) {

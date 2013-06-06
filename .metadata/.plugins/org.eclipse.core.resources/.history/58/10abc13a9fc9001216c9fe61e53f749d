@@ -3,6 +3,7 @@
  */
 package com.example.java1week2_4;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -12,14 +13,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.lib.WebStuff;
-import com.loopj.android.image.SmartImageView;
 
+import android.R.drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -130,70 +132,46 @@ public class MainActivity extends Activity {
 					long id) {
 				Log.i("DETAIL SELECTED", parent.getItemAtPosition(pos)
 						.toString());
-				// Check to see if JSON has been created yet
+				//Check to see if JSON has been created yet
 				if (_json != null) {
 					try {
-						// Set selected value
-						String selected = new String(parent.getItemAtPosition(
-								pos).toString());
+						//Set selected value
+						String selected = new String(parent.getItemAtPosition(pos).toString());
 						Log.i("DETAIL SELECTED", selected);
-						// If not at default value fetch results
+						//If not at default value fetch results
 						if (!selected.matches(getString(R.string.see_details))) {
-							// Change from nice formatting to API formatting
-							// Title
+							//Change from nice formatting to API formatting
+							//Title
 							if (selected.matches(getString(R.string.title))) {
-								results.setText("Movie Title:\n \t"
-										+ _json.getString(
-												getString(R.string.titleAPI))
-												.toString());
-								// Year
-							} else if (selected
-									.matches(getString(R.string.year))) {
-								results.setText("Year Released:\n \t"
-										+ _json.getString(
-												getString(R.string.yearAPI))
-												.toString());
-								// Rating
-							} else if (selected
-									.matches(getString(R.string.mpaa_rating))) {
-								results.setText("MPAA Rating:\n \t"
-										+ _json.getString(
-												getString(R.string.mpaa_ratingAPI))
-												.toString());
-								// Runtime
-							} else if (selected
-									.matches(getString(R.string.runtime))) {
-								results.setText("Movie Runtime:\n \t"
-										+ _json.getString(
-												getString(R.string.runtimeAPI))
-												.toString() + " minutes");
-								// Critics
-							} else if (selected
-									.matches(getString(R.string.critics_consensus))) {
-								results.setText("Critics Consensus:\n \t"
-										+ _json.getString(
-												getString(R.string.critics_consensusAPI))
-												.toString());
-								/*
-								 * Movie Poster I, for the life of me can't
-								 * figure out why this isn't working. Please
-								 * help.
-								 */
-							} else if (selected
-									.matches(getString(R.string.thumbnail))) {
+								results.setText("Movie Title:\n \t"+_json.getString(getString(R.string.titleAPI)).toString());
+							//Year
+							} else if (selected.matches(getString(R.string.year))) {
+								results.setText("Year Released:\n \t"+_json.getString(getString(R.string.yearAPI)).toString());
+							//Rating
+							} else if (selected.matches(getString(R.string.mpaa_rating))) {
+								results.setText("MPAA Rating:\n \t"+_json.getString(getString(R.string.mpaa_ratingAPI)).toString());
+							//Runtime	
+							} else if (selected.matches(getString(R.string.runtime))) {
+								results.setText("Movie Runtime:\n \t"+_json.getString(getString(R.string.runtimeAPI)).toString()+" minutes");
+							//Critics	
+							} else if (selected.matches(getString(R.string.critics_consensus))) {
+								results.setText("Critics Consensus:\n \t"+_json.getString(getString(R.string.critics_consensusAPI)).toString());
+							/* 
+							 * Movie Poster
+							 * I for the life of me can't figure out why this isn't working. Please help.
+							 * 
+							 */
+							} else if (selected.matches(getString(R.string.thumbnail))) {
 								results.setText("Poster:\n \t");
-								String link = new String(_json.getJSONObject(
-										"posters").getString(
-										getString(R.string.thumbnailAPI)
-												.toString()));
-								SmartImageView iView = new SmartImageView(_context);
+								String link = new String(_json.getJSONObject("posters").getString(getString(R.string.thumbnailAPI).toString()));
+								ImageView iView = new ImageView(_context);
 								try {
-									iView.setImageUrl(link);
-									LinearLayout ll = (LinearLayout) findViewById(R.layout.main);
-									ll.addView(iView);
-								} catch (Exception e) {
-									Log.e("IMAGE", "NO IMAGE");
-								}
+									iView.setImageBitmap(drawable_from_url(link));
+						        } catch(Exception e) {
+						            Log.e("IMAGE", "NO IMAGE");
+						        }
+								LinearLayout ll = (LinearLayout)findViewById(R.layout.main);
+								ll.addView(iView);	
 							}
 						}
 					} catch (JSONException e) {
@@ -221,20 +199,18 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	//Fetch Movie poster
+	Bitmap drawable_from_url(String url) throws java.net.MalformedURLException, java.io.IOException {
+	    Bitmap x;
 
-	// Fetch Movie poster
-	Bitmap drawable_from_url(String url) throws java.net.MalformedURLException,
-			java.io.IOException {
-		Bitmap bit;
+	    HttpURLConnection connection = (HttpURLConnection)new URL(url) .openConnection();
 
-		HttpURLConnection connection = (HttpURLConnection) new URL(url)
-				.openConnection();
+	    connection.connect();
+	    InputStream input = connection.getInputStream();
 
-		connection.connect();
-		InputStream input = connection.getInputStream();
-
-		bit = BitmapFactory.decodeStream(input);
-		return bit;
+	    x = BitmapFactory.decodeStream(input);
+	    return x;
 	}
 
 	// Build URL
@@ -277,11 +253,9 @@ public class MainActivity extends Activity {
 				Log.i("JSON", result);
 				JSONObject resultJSON = new JSONObject(result);
 				try {
-					/*
-					 * JSON Array is Movies. object 0 is the first result. get
-					 * string provides the detail Object.
-					 */
-
+					/* JSON Array is Movies. object 0 is the first result. get
+					 *  string provides the detail Object.*/
+					
 					if (resultJSON.getString("total").toString().compareTo("0") == 0) {
 						Toast toast = Toast.makeText(_context,
 								"No movie by that name exists",
