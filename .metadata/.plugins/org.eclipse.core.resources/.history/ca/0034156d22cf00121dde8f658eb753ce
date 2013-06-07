@@ -14,10 +14,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import services.MyHTTPService;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

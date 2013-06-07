@@ -14,10 +14,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import services.MyHTTPService;
+import services.HTTPService;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -167,9 +169,9 @@ public class MainActivity extends Activity {
 				//HTTP Service Messenger
 				Messenger HTTPMessenger = new Messenger(HTTPHandler);
 				//HTTP Service Intent
-				Intent getHTTPIntent = new Intent(_context, MyHTTPService.class);
-				getHTTPIntent.putExtra(MyHTTPService.MESSENGER_KEY, HTTPMessenger);
-				getHTTPIntent.putExtra(MyHTTPService.MOVIE_KEY, _searchField.getText().toString());
+				Intent getHTTPIntent = new Intent(_context, HTTPService.class);
+				getHTTPIntent.putExtra(HTTPService.MESSENGER_KEY, HTTPMessenger);
+				getHTTPIntent.putExtra(HTTPService.MOVIE_KEY, _searchField.getText().toString());
 				//Start service
 				startService(getHTTPIntent);
 
