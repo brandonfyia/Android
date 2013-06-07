@@ -1,0 +1,19 @@
+package services;
+
+import android.app.IntentService;
+import android.content.Intent;
+
+public class HTTP extends IntentService{
+	
+	public HTTP(){
+		super("HTTP");
+		
+	}
+
+	@Override
+	protected void onHandleIntent(Intent intent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
