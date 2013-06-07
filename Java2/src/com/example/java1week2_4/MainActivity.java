@@ -31,19 +31,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lib.WebStuff;
-import com.loopj.android.image.SmartImageView;
 
 /**
  * The Class MainActivity.
@@ -56,7 +49,6 @@ public class MainActivity extends Activity {
 	JSONObject _json;
 	EditText _searchField;
 	TextView _results;
-	Spinner _iSpin;
 	TextView _header;
 
 	/*
@@ -74,7 +66,6 @@ public class MainActivity extends Activity {
 		// Set defaults for variables
 		_searchField = (EditText) findViewById(R.id.searchField);
 		_results = (TextView) findViewById(R.id.resultsText);
-		_iSpin = (Spinner) findViewById(R.id.infoSpinner);
 		_header = (TextView) findViewById(R.id.header);
 		_context = this;
 
@@ -155,6 +146,31 @@ public class MainActivity extends Activity {
 											"title").toString());
 									_results.setText("");
 									_header.setText("Movie Found!");
+									//Title
+									TextView titleTV = (TextView) findViewById(R.id.titleTV);
+									titleTV.setText(_json.getString(
+											getString(R.string.titleAPI))
+											.toString());
+										// Year
+									TextView yearTV = (TextView) findViewById(R.id.yearTV);
+									yearTV.setText(_json.getString(
+											getString(R.string.yearAPI))
+											.toString());
+										// Rating
+									TextView mpaaTV = (TextView) findViewById(R.id.mpaaTV);
+									mpaaTV.setText(_json.getString(
+											getString(R.string.mpaa_ratingAPI))
+											.toString());
+										// Runtime
+									TextView runtimeTV = (TextView) findViewById(R.id.runtimeTV);
+									runtimeTV.setText(_json.getString(
+											getString(R.string.runtimeAPI))
+											.toString());
+										// Critics
+									TextView criticsTV = (TextView) findViewById(R.id.criticsTV);
+									criticsTV.setText(_json.getString(
+											getString(R.string.critics_consensusAPI))
+											.toString());
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
@@ -173,8 +189,6 @@ public class MainActivity extends Activity {
 				//Start service
 				startService(getHTTPIntent);
 
-				// Set spinner back to default
-				_iSpin.setSelection(0);
 				// Close keyboard
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
@@ -182,106 +196,29 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		// Create Info Spinner Display
-		ArrayAdapter<CharSequence> listAdapter = ArrayAdapter
-				.createFromResource(_context, R.array.detailsArray,
-						android.R.layout.simple_spinner_item);
-		listAdapter
-				.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		_iSpin.setAdapter(listAdapter);
+//				// Movie Poster
+//							} else if (selected
+//									.matches(getString(R.string.thumbnail))) {
+//								_results.setText("Poster:\n \t");
+//								String link = new String(_json.getJSONObject(
+//										"posters").getString(
+//										getString(R.string.thumbnailAPI)
+//												.toString()));
+//								SmartImageView iView = new SmartImageView(
+//										_context);
+//								iView.setImageUrl(link);
+//								LayoutParams lp = new LinearLayout.LayoutParams(
+//										LinearLayout.LayoutParams.MATCH_PARENT,
+//										LinearLayout.LayoutParams.WRAP_CONTENT);
+//								LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayout);
+//								iView.setLayoutParams(lp);
+//								ll.addView(iView);
+//							
+	};
+							
+						
 
-		// Info Spinner Handler
-		_iSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View v, int pos,
-					long id) {
-				Log.i("DETAIL SELECTED", parent.getItemAtPosition(pos)
-						.toString());
-				// Check to see if JSON has been created yet
-				if (_json != null) {
-					try {
-						// Set selected value
-						String selected = new String(parent.getItemAtPosition(
-								pos).toString());
-						Log.i("DETAIL SELECTED", selected);
-						// If not at default value fetch results
-						if (!selected.matches(getString(R.string.see_details))) {
-							// Change from nice formatting to API formatting
-							// Title
-							if (selected.matches(getString(R.string.title))) {
-								_results.setText("Movie Title:\n \t"
-										+ _json.getString(
-												getString(R.string.titleAPI))
-												.toString());
-								// Year
-							} else if (selected
-									.matches(getString(R.string.year))) {
-								_results.setText("Year Released:\n \t"
-										+ _json.getString(
-												getString(R.string.yearAPI))
-												.toString());
-								// Rating
-							} else if (selected
-									.matches(getString(R.string.mpaa_rating))) {
-								_results.setText("MPAA Rating:\n \t"
-										+ _json.getString(
-												getString(R.string.mpaa_ratingAPI))
-												.toString());
-								// Runtime
-							} else if (selected
-									.matches(getString(R.string.runtime))) {
-								_results.setText("Movie Runtime:\n \t"
-										+ _json.getString(
-												getString(R.string.runtimeAPI))
-												.toString() + " minutes");
-								// Critics
-							} else if (selected
-									.matches(getString(R.string.critics_consensus))) {
-								_results.setText("Critics Consensus:\n \t"
-										+ _json.getString(
-												getString(R.string.critics_consensusAPI))
-												.toString());
-								// Movie Poster
-							} else if (selected
-									.matches(getString(R.string.thumbnail))) {
-								_results.setText("Poster:\n \t");
-								String link = new String(_json.getJSONObject(
-										"posters").getString(
-										getString(R.string.thumbnailAPI)
-												.toString()));
-								SmartImageView iView = new SmartImageView(
-										_context);
-								iView.setImageUrl(link);
-								LayoutParams lp = new LinearLayout.LayoutParams(
-										LinearLayout.LayoutParams.MATCH_PARENT,
-										LinearLayout.LayoutParams.WRAP_CONTENT);
-								LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayout);
-								iView.setLayoutParams(lp);
-								ll.addView(iView);
-								// try {
-								// iView.setImageUrl(link);
-								// LinearLayout ll = (LinearLayout)
-								// findViewById(R.layout.main);
-								// ll.addView(iView);
-								// } catch (Exception e) {
-								// Log.e("IMAGE", "NO IMAGE");
-								// Log.e("IMAGE", link);
-								// }
-							}
-						}
-					} catch (JSONException e) {
-						Log.e("RESULTS ERROR", "NO RESULTS");
-						_results.setText("No info found. Please double check that the movie title was entered correctly");
-					}
-				}
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-
-			}
-		});
-	}
+	
 
 	/*
 	 * (non-Javadoc)
