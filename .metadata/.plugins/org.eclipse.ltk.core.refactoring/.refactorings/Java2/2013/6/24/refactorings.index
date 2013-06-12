@@ -1,3 +1,7 @@
 1370998026508	Rename type 'FileStuff'
 1370998103541	Rename type 'WebStuff'
 1370998350864	Rename type 'MyHTTPService'
+1371009488071	Rename local variable 'HTTPHandler'
+1371009500533	Rename local variable 'WebPHandler'
+1371009515547	Rename local variable 'HTTPMessenger'
+1371009530518	Rename local variable 'getHTTPIntent'

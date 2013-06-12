@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
 				Log.i("CLICK HANDLER", _searchField.getText().toString());
 				// Send text field entry to URL builder and request API
 				//HTTP Service Handler
-				Handler webHandler = new Handler() {
+				Handler HTTPHandler = new Handler() {
 					@Override
 					public void handleMessage(Message msg) {
 						if (msg.arg1 == RESULT_OK && msg.obj != null) {
@@ -190,13 +190,13 @@ public class MainActivity extends Activity {
 					}
 				};
 				//HTTP Service Messenger
-				Messenger webMessenger = new Messenger(webHandler);
+				Messenger HTTPMessenger = new Messenger(HTTPHandler);
 				//HTTP Service Intent
-				Intent getWebIntent = new Intent(_context, WebServiceManager.class);
-				getWebIntent.putExtra(WebServiceManager.MESSENGER_KEY, webMessenger);
-				getWebIntent.putExtra(WebServiceManager.MOVIE_KEY, _searchField.getText().toString());
+				Intent getHTTPIntent = new Intent(_context, WebServiceManager.class);
+				getHTTPIntent.putExtra(WebServiceManager.MESSENGER_KEY, HTTPMessenger);
+				getHTTPIntent.putExtra(WebServiceManager.MOVIE_KEY, _searchField.getText().toString());
 				//Start service
-				startService(getWebIntent);
+				startService(getHTTPIntent);
 				// Close keyboard
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
