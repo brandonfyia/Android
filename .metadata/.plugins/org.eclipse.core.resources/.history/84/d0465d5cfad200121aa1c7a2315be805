@@ -17,7 +17,7 @@ import java.net.URLEncoder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import services.WebServiceManager;
+import services.MyHTTPService;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -183,9 +183,9 @@ public class MainActivity extends Activity {
 				//HTTP Service Messenger
 				Messenger HTTPMessenger = new Messenger(HTTPHandler);
 				//HTTP Service Intent
-				Intent getHTTPIntent = new Intent(_context, WebServiceManager.class);
-				getHTTPIntent.putExtra(WebServiceManager.MESSENGER_KEY, HTTPMessenger);
-				getHTTPIntent.putExtra(WebServiceManager.MOVIE_KEY, _searchField.getText().toString());
+				Intent getHTTPIntent = new Intent(_context, MyHTTPService.class);
+				getHTTPIntent.putExtra(MyHTTPService.MESSENGER_KEY, HTTPMessenger);
+				getHTTPIntent.putExtra(MyHTTPService.MOVIE_KEY, _searchField.getText().toString());
 				//Start service
 				startService(getHTTPIntent);
 
