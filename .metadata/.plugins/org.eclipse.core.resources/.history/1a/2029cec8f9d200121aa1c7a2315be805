@@ -36,7 +36,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lib.WebManager;
+import com.example.lib.WebStuff;
 
 /**
  * The Class MainActivity.
@@ -73,9 +73,9 @@ public class MainActivity extends Activity {
 		_header.setText("Search For A Movie");
 
 		// Detect Network connection
-		_connected = WebManager.getConnectionStatus(_context);
+		_connected = WebStuff.getConnectionStatus(_context);
 		if (_connected) {
-			Log.i("NETWORK CONNECTION", WebManager.getConnectionType(_context));
+			Log.i("NETWORK CONNECTION", WebStuff.getConnectionType(_context));
 		} else {
 			// If no connection, load last viewed movie details
 
@@ -272,7 +272,7 @@ public class MainActivity extends Activity {
 		protected String doInBackground(URL... urls) {
 			String response = "";
 			for (URL url : urls) {
-				response = WebManager.getURLStringResponse(url);
+				response = WebStuff.getURLStringResponse(url);
 			}
 			return response;
 		}

@@ -13,7 +13,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.example.lib.WebManager;
+import com.example.lib.WebStuff;
 
 public class MyHTTPService extends IntentService {
 
@@ -50,7 +50,7 @@ public class MyHTTPService extends IntentService {
 			finalURL = new URL(baseURL + qs + "&page_limit=1");
 			
 
-			response = WebManager.getURLStringResponse(finalURL);
+			response = WebStuff.getURLStringResponse(finalURL);
 
 		} catch (MalformedURLException e) {
 			Log.e("BAD URL", "MALFORMED URL");

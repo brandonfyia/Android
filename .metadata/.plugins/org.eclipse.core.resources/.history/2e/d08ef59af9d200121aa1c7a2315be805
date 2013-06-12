@@ -36,7 +36,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lib.WebManager;
+import com.example.lib.WebStuff;
 
 /**
  * The Class MainActivity.
@@ -73,9 +73,9 @@ public class MainActivity extends Activity {
 		_header.setText("Search For A Movie");
 
 		// Detect Network connection
-		_connected = WebManager.getConnectionStatus(_context);
+		_connected = WebStuff.getConnectionStatus(_context);
 		if (_connected) {
-			Log.i("NETWORK CONNECTION", WebManager.getConnectionType(_context));
+			Log.i("NETWORK CONNECTION", WebStuff.getConnectionType(_context));
 		} else {
 			// If no connection, load last viewed movie details
 
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 			_header.setText("No connection. Viewing last searched movie.");
 
 			// Load last JSON file
-			Object stored = FileStorageManager.getFileStuffInstance().readObjectFile(
+			Object stored = FileStuff.getFileStuffInstance().readObjectFile(
 					_context, "Movie", true);
 			if (stored != null) {
 				String temp = (String) stored;
@@ -138,7 +138,7 @@ public class MainActivity extends Activity {
 									_json = resultJSON.getJSONArray("movies")
 											.getJSONObject(0);
 									// Store object in external memory
-									FileStorageManager.getFileStuffInstance()
+									FileStuff.getFileStuffInstance()
 											.storeObjectFile(_context, "Movie",
 													_json.toString(), true);
 									// Set Text Values
@@ -272,7 +272,7 @@ public class MainActivity extends Activity {
 		protected String doInBackground(URL... urls) {
 			String response = "";
 			for (URL url : urls) {
-				response = WebManager.getURLStringResponse(url);
+				response = WebStuff.getURLStringResponse(url);
 			}
 			return response;
 		}
@@ -299,7 +299,7 @@ public class MainActivity extends Activity {
 						_json = resultJSON.getJSONArray("movies")
 								.getJSONObject(0);
 						// Store object in external memory
-						FileStorageManager.getFileStuffInstance().storeObjectFile(
+						FileStuff.getFileStuffInstance().storeObjectFile(
 								_context, "Movie", _json.toString(), true);
 						// Set Text Values
 						_searchField.setText(_json.getString("title")
