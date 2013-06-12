@@ -49,13 +49,7 @@ public class MainActivity extends Activity {
 	JSONObject _json;
 	EditText _searchField;
 	TextView _header;
-	TextView _titleTV;
-	TextView _yearTV;
-	TextView _mpaaTV;
-	TextView _runtimeTV;
-	TextView _criticsTV;
-	SmartImageView _iView;
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -71,12 +65,6 @@ public class MainActivity extends Activity {
 		// Set defaults for variables
 		_searchField = (EditText) findViewById(R.id.searchField);
 		_header = (TextView) findViewById(R.id.header);
-		_titleTV = (TextView) findViewById(R.id.titleTV);
-		_yearTV = (TextView) findViewById(R.id.yearTV);
-	    _mpaaTV = (TextView) findViewById(R.id.mpaaTV);
-		_runtimeTV = (TextView) findViewById(R.id.runtimeTV);
-		_criticsTV = (TextView) findViewById(R.id.criticsTV);
-		_iView = new SmartImageView(_context);
 		_context = this;
 
 		// Set Header Default text
@@ -122,12 +110,12 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Log.i("CLICK HANDLER", _searchField.getText().toString());
 				//Clear out all text fields
-				_titleTV.setText("");
-				_yearTV.setText("");
-				_mpaaTV.setText("");
-				_runtimeTV.setText("");
-				_criticsTV.setText("");
-				_iView.setImageUrl(null);
+				final TextView titleTV = (TextView) findViewById(R.id.titleTV);
+				final TextView yearTV = (TextView) findViewById(R.id.yearTV);
+				final TextView mpaaTV = (TextView) findViewById(R.id.mpaaTV);
+				final TextView runtimeTV = (TextView) findViewById(R.id.runtimeTV);
+				final TextView criticsTV = (TextView) findViewById(R.id.criticsTV);
+				final SmartImageView iView = new SmartImageView(_context);
 				// Send text field entry to URL builder and request API
 				//HTTP Service Handler
 				Handler webHandler = new Handler() {
@@ -161,37 +149,37 @@ public class MainActivity extends Activity {
 											"title").toString());
 									_header.setText("Movie Found!");
 									//Title
-									_titleTV.setText(_json.getString(
+									titleTV.setText(_json.getString(
 											getString(R.string.titleAPI))
 											.toString());
-									// Year
-									_yearTV.setText(_json.getString(
+										// Year
+									yearTV.setText(_json.getString(
 											getString(R.string.yearAPI))
 											.toString());
-									// Rating
-									_mpaaTV.setText(_json.getString(
+										// Rating
+									mpaaTV.setText(_json.getString(
 											getString(R.string.mpaa_ratingAPI))
 											.toString());
-									// Runtime
-									_runtimeTV.setText(_json.getString(
+										// Runtime
+									runtimeTV.setText(_json.getString(
 											getString(R.string.runtimeAPI))
 											.toString()+" minutes");
-									// Critics
-									_criticsTV.setText(_json.getString(
+										// Critics
+									criticsTV.setText(_json.getString(
 											getString(R.string.critics_consensusAPI))
 											.toString());
-									//Poster
+										//Poster
 									String link = new String(_json.getJSONObject(
 											"posters").getString(
 											getString(R.string.thumbnailAPI)
 													.toString()));
-									_iView.setImageUrl(link);
+									iView.setImageUrl(link);
 									LayoutParams lp = new LinearLayout.LayoutParams(
 											LinearLayout.LayoutParams.MATCH_PARENT,
 											LinearLayout.LayoutParams.WRAP_CONTENT);
 									GridLayout gl = (GridLayout) findViewById(R.id.gridLayout);
-									_iView.setLayoutParams(lp);
-									gl.addView(_iView);
+									iView.setLayoutParams(lp);
+									gl.addView(iView);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
