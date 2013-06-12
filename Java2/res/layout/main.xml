@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_title"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="#ffffffff"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,58 +48,57 @@
             android:orientation="vertical" >
 
             <TextView
-                style="@style/GridText"
+                style="@style/GridLabelText"
                 android:layout_gravity="left"
                 android:text="@string/title" />
 
             <TextView
                 android:id="@+id/titleTV"
-                style="@style/GridText"
+                style="@style/GridAnswerText"
                 android:layout_gravity="left" />
 
             <TextView
-                style="@style/GridText"
+                style="@style/GridLabelText"
                 android:layout_gravity="left"
                 android:text="@string/year" />
 
             <TextView
                 android:id="@+id/yearTV"
-                style="@style/GridText"
+                style="@style/GridAnswerText"
                 android:layout_gravity="left" />
 
             <TextView
-                style="@style/GridText"
+                style="@style/GridLabelText"
                 android:layout_gravity="left"
                 android:text="@string/mpaa_rating" />
 
             <TextView
                 android:id="@+id/mpaaTV"
-                style="@style/GridText"
+                style="@style/GridAnswerText"
                 android:layout_gravity="left" />
 
             <TextView
-                style="@style/GridText"
-                android:layout_width="match_parent"
+                style="@style/GridLabelText"
                 android:layout_gravity="left"
                 android:text="@string/runtime" />
 
             <TextView
                 android:id="@+id/runtimeTV"
-                style="@style/GridText"
+                style="@style/GridAnswerText"
                 android:layout_gravity="left" />
 
             <TextView
-                style="@style/GridText"
+                style="@style/GridLabelText"
                 android:layout_gravity="left"
                 android:text="@string/critics_consensus" />
 
             <TextView
                 android:id="@+id/criticsTV"
-                style="@style/GridText"
+                style="@style/GridAnswerText"
                 android:layout_gravity="left" />
             
             <TextView
-                style="@style/GridText"
+                style="@style/GridLabelText"
                 android:layout_gravity="left"
                 android:text="@string/thumbnail" />
             

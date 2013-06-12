@@ -90,9 +90,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080003;
+        public static final int AppBaseTheme=0x7f080004;
         public static final int AppTheme=0x7f080000;
         public static final int BigCenteredText=0x7f080001;
-        public static final int GridText=0x7f080002;
+        public static final int GridAnswerText=0x7f080003;
+        public static final int GridLabelText=0x7f080002;
     }
 }
