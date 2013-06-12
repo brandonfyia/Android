@@ -10,14 +10,18 @@
  */
 package com.example.java1week2_4;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import services.WebServiceManager;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -103,7 +107,6 @@ public class MainActivity extends Activity {
 		// Search Handler
 		Button searchButton = (Button) findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(new OnClickListener() {
-			@SuppressLint("HandlerLeak")
 			@Override
 			public void onClick(View v) {
 				Log.i("CLICK HANDLER", _searchField.getText().toString());
@@ -240,4 +243,79 @@ public class MainActivity extends Activity {
 			}
 		};
 	};
+
+	// Build URL
+	private void getQuote(String movieName) {
+		String baseURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=zns9a4f2hfm94ju3unu4axzk&q=";
+		String qs;
+		try {
+			qs = URLEncoder.encode(movieName, "UTF-8");
+		} catch (Exception e) {
+			Log.e("BAD URL", "ENCODING PROBLEM");
+			qs = "";
+		}
+		// Send URl to Async Task
+		URL finalURL;
+		try {
+			finalURL = new URL(baseURL + qs + "&page_limit=1");
+			QuoteRequest qr = new QuoteRequest();
+			qr.execute(finalURL);
+		} catch (MalformedURLException e) {
+			Log.e("BAD URL", "MALFORMED URL");
+			finalURL = null;
+		}
+	}
+
+	// Send URL to web stuff to pull data
+	private class QuoteRequest extends AsyncTask<URL, Void, String> {
+		@Override
+		protected String doInBackground(URL... urls) {
+			String response = "";
+			for (URL url : urls) {
+				response = WebManager.getURLStringResponse(url);
+			}
+			return response;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			try {
+				// Set data
+				Log.i("JSON", result);
+				JSONObject resultJSON = new JSONObject(result);
+				try {
+					/*
+					 * JSON Array is Movies. object 0 is the first result. get
+					 * string provides the detail Object.
+					 */
+
+					if (resultJSON.getString("total").toString().compareTo("0") == 0) {
+						Toast toast = Toast.makeText(_context,
+								"No movie by that name exists",
+								Toast.LENGTH_LONG);
+						toast.show();
+						_header.setText("Try Again");
+					} else {
+						_json = resultJSON.getJSONArray("movies")
+								.getJSONObject(0);
+						// Store object in external memory
+						FileStorageManager.getFileStuffInstance().storeObjectFile(
+								_context, "Movie", _json.toString(), true);
+						// Set Text Values
+						_searchField.setText(_json.getString("title")
+								.toString());
+						_results.setText("");
+						_header.setText("Movie Found!");
+					}
+				} catch (JSONException e) {
+					Log.e("JSON", "JSON OBJECT EXCEPTION");
+					_results.setText("No info found. Please double check that the movie title was entered correctly");
+				}
+			} catch (JSONException e) {
+				Log.e("JSON", "JSON OBJECT EXCEPTION");
+				_results.setText("No info found. Please double check that the movie title was entered correctly");
+			}
+		}
+	}
+
 }
