@@ -29,10 +29,14 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lib.WebManager;
+import com.loopj.android.image.SmartImageView;
 
 /**
  * The Class MainActivity.
@@ -44,7 +48,6 @@ public class MainActivity extends Activity {
 	Boolean _connected = false;
 	JSONObject _json;
 	EditText _searchField;
-	TextView _results;
 	TextView _header;
 
 	/*
@@ -61,7 +64,6 @@ public class MainActivity extends Activity {
 
 		// Set defaults for variables
 		_searchField = (EditText) findViewById(R.id.searchField);
-		_results = (TextView) findViewById(R.id.resultsText);
 		_header = (TextView) findViewById(R.id.header);
 		_context = this;
 
@@ -141,7 +143,6 @@ public class MainActivity extends Activity {
 									// Set Text Values
 									_searchField.setText(_json.getString(
 											"title").toString());
-									_results.setText("");
 									_header.setText("Movie Found!");
 									//Title
 									TextView titleTV = (TextView) findViewById(R.id.titleTV);
@@ -168,11 +169,25 @@ public class MainActivity extends Activity {
 									criticsTV.setText(_json.getString(
 											getString(R.string.critics_consensusAPI))
 											.toString());
+										//Poster
+									String link = new String(_json.getJSONObject(
+											"posters").getString(
+											getString(R.string.thumbnailAPI)
+													.toString()));
+									SmartImageView iView = new SmartImageView(
+											_context);
+									iView.setImageUrl(link);
+									LayoutParams lp = new LinearLayout.LayoutParams(
+											LinearLayout.LayoutParams.MATCH_PARENT,
+											LinearLayout.LayoutParams.WRAP_CONTENT);
+									GridLayout gl = (GridLayout) findViewById(R.id.gridLayout);
+									iView.setLayoutParams(lp);
+									gl.addView(iView);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
 								e.printStackTrace();
-								_results.setText("No info found. Please double check that the movie title was entered correctly");
+								_header.setText("No info found. Please double check that the movie title was entered correctly");
 							}
 						}
 					}

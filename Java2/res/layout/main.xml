@@ -34,52 +34,76 @@
             android:text="@string/go" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/resultsText"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/BigCenteredText"/>
+        android:layout_height="wrap_content" >
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2" >
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="vertical" >
 
-        <TextView
-            android:text="@string/title"
-            style="@style/BigCenteredText" />
-        <TextView
-            android:id="@+id/titleTV"
-            style="@style/BigCenteredText"/>
+            <TextView
+                style="@style/GridText"
+                android:layout_gravity="left"
+                android:text="@string/title" />
 
-        <TextView
-            style="@style/BigCenteredText"
-            android:text="@string/year" />
+            <TextView
+                android:id="@+id/titleTV"
+                style="@style/GridText"
+                android:layout_gravity="left" />
 
-        <TextView
-            android:id="@+id/yearTV"
-            style="@style/BigCenteredText" />
-        <TextView
-            android:text="@string/mpaa_rating"
-            style="@style/BigCenteredText" />
-        <TextView
-            android:id="@+id/mpaaTV"
-            style="@style/BigCenteredText" />
-        <TextView
-            android:text="@string/runtime"
-            style="@style/BigCenteredText"/>
-        <TextView
-            android:id="@+id/runtimeTV"
-            style="@style/BigCenteredText"/>
+            <TextView
+                style="@style/GridText"
+                android:layout_gravity="left"
+                android:text="@string/year" />
 
-        <TextView
-            style="@style/BigCenteredText"
-            android:layout_width="185dp"
-            android:text="@string/critics_consensus" />
+            <TextView
+                android:id="@+id/yearTV"
+                style="@style/GridText"
+                android:layout_gravity="left" />
 
-        <TextView
-            android:id="@+id/criticsTV"
-            style="@style/BigCenteredText"/>
-    </GridLayout>
+            <TextView
+                style="@style/GridText"
+                android:layout_gravity="left"
+                android:text="@string/mpaa_rating" />
+
+            <TextView
+                android:id="@+id/mpaaTV"
+                style="@style/GridText"
+                android:layout_gravity="left" />
+
+            <TextView
+                style="@style/GridText"
+                android:layout_width="match_parent"
+                android:layout_gravity="left"
+                android:text="@string/runtime" />
+
+            <TextView
+                android:id="@+id/runtimeTV"
+                style="@style/GridText"
+                android:layout_gravity="left" />
+
+            <TextView
+                style="@style/GridText"
+                android:layout_gravity="left"
+                android:text="@string/critics_consensus" />
+
+            <TextView
+                android:id="@+id/criticsTV"
+                style="@style/GridText"
+                android:layout_gravity="left" />
+            
+            <TextView
+                style="@style/GridText"
+                android:layout_gravity="left"
+                android:text="@string/thumbnail" />
+            
+        </GridLayout>
+
+    </ScrollView>
 
 </LinearLayout>
