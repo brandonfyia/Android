@@ -29,12 +29,13 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a000b;
+        public static final int action_settings=0x7f0a000c;
         public static final int criticsTV=0x7f0a000a;
         public static final int gridLayout=0x7f0a0005;
         public static final int header=0x7f0a0001;
         public static final int mainLayout=0x7f0a0000;
         public static final int mpaaTV=0x7f0a0008;
+        public static final int posterIV=0x7f0a000b;
         public static final int runtimeTV=0x7f0a0009;
         public static final int scrollView1=0x7f0a0004;
         public static final int searchButton=0x7f0a0003;

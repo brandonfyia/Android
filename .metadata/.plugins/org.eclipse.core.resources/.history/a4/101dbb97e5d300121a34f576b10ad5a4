@@ -199,8 +199,12 @@ public class MainActivity extends Activity {
 											"posters").getString(
 											getString(R.string.thumbnailAPI)
 													.toString()));
-									_iView.setImageUrl(_link);
-									_iView.refreshDrawableState();
+									try {
+										_iView.setImageUrl(_link);
+									} catch (Exception e) {
+										Log.e("IMAGE VIEW", e.getMessage().toString());
+										e.printStackTrace();
+									}
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());

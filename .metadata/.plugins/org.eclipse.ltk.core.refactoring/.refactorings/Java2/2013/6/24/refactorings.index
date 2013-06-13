@@ -12,3 +12,5 @@
 1371015020590	Rename field 'criticsTV'
 1371015025814	Rename field 'iView'
 1371095808621	Rename field 'gl'
+1371096854063	Rename local variable 'outState'
+1371097990438	Rename field 'link'

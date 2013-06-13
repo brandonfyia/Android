@@ -30,6 +30,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,10 +79,10 @@ public class MainActivity extends Activity {
 	    _mpaaTV = (TextView) findViewById(R.id.mpaaTV);
 		_runtimeTV = (TextView) findViewById(R.id.runtimeTV);
 		_criticsTV = (TextView) findViewById(R.id.criticsTV);
-		_iView = (SmartImageView) findViewById(R.id.posterIV);
+		_iView = new SmartImageView(_context);
 		_gl = (GridLayout) findViewById(R.id.gridLayout);
 		
-		//Check for previously saved state
+
 		if (savedInstanceState == null) {
 			// Set Header Default text
 			_header.setText("Search For A Movie");
@@ -200,7 +202,11 @@ public class MainActivity extends Activity {
 											getString(R.string.thumbnailAPI)
 													.toString()));
 									_iView.setImageUrl(_link);
-									_iView.refreshDrawableState();
+									LayoutParams lp = new LinearLayout.LayoutParams(
+											LinearLayout.LayoutParams.MATCH_PARENT,
+											LinearLayout.LayoutParams.WRAP_CONTENT);
+									_iView.setLayoutParams(lp);
+									_gl.addView(_iView);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());

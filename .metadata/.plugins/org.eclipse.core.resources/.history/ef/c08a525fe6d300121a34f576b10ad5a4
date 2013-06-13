@@ -200,7 +200,6 @@ public class MainActivity extends Activity {
 											getString(R.string.thumbnailAPI)
 													.toString()));
 									_iView.setImageUrl(_link);
-									_iView.refreshDrawableState();
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());

@@ -103,11 +103,7 @@
                 android:text="@string/thumbnail" />
             
             <com.loopj.android.image.SmartImageView
-                android:id="@+id/posterIV"
-                style="@style/GridAnswerText"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_gravity="center" />
+    			android:id="@+id/posterIV" />
             
         </GridLayout>
 

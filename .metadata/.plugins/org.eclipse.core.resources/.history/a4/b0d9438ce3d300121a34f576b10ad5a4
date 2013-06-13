@@ -30,6 +30,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +56,6 @@ public class MainActivity extends Activity {
 	TextView _criticsTV;
 	SmartImageView _iView;
 	GridLayout _gl;
-	String _link;
 	
 	/*
 	 * (non-Javadoc)
@@ -77,25 +78,13 @@ public class MainActivity extends Activity {
 	    _mpaaTV = (TextView) findViewById(R.id.mpaaTV);
 		_runtimeTV = (TextView) findViewById(R.id.runtimeTV);
 		_criticsTV = (TextView) findViewById(R.id.criticsTV);
-		_iView = (SmartImageView) findViewById(R.id.posterIV);
+		_iView = new SmartImageView(_context);
 		_gl = (GridLayout) findViewById(R.id.gridLayout);
 		
-		//Check for previously saved state
-		if (savedInstanceState == null) {
-			// Set Header Default text
-			_header.setText("Search For A Movie");
-		} else {
-			//Restore old Values
-			_searchField.setText(savedInstanceState.getString("SEARCH_FIELD"));
-			_header.setText(savedInstanceState.getString("HEADER"));
-			_titleTV.setText(savedInstanceState.getString("TITLE"));
-			_yearTV.setText(savedInstanceState.getString("YEAR"));
-			_mpaaTV.setText(savedInstanceState.getString("MPAA"));
-			_runtimeTV.setText(savedInstanceState.getString("RUNTIME"));
-			_criticsTV.setText(savedInstanceState.getString("CRITICS"));
-			_iView.setImageUrl(savedInstanceState.getString("LINK"));
-		}
-		
+
+		// Set Header Default text
+		_header.setText("Search For A Movie");
+
 		// Detect Network connection
 		_connected = WebManager.getConnectionStatus(_context);
 		if (_connected) {
@@ -195,12 +184,16 @@ public class MainActivity extends Activity {
 											getString(R.string.critics_consensusAPI))
 											.toString());
 									//Poster
-									_link = new String(_json.getJSONObject(
+									String link = new String(_json.getJSONObject(
 											"posters").getString(
 											getString(R.string.thumbnailAPI)
 													.toString()));
-									_iView.setImageUrl(_link);
-									_iView.refreshDrawableState();
+									_iView.setImageUrl(link);
+									LayoutParams lp = new LinearLayout.LayoutParams(
+											LinearLayout.LayoutParams.MATCH_PARENT,
+											LinearLayout.LayoutParams.WRAP_CONTENT);
+									_iView.setLayoutParams(lp);
+									_gl.addView(_iView);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
@@ -249,18 +242,4 @@ public class MainActivity extends Activity {
 			}
 		};
 	};
-
-	@Override
-	protected void onSaveInstanceState(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putString("SEARCH_FIELD", _searchField.getText().toString());
-		savedInstanceState.putString("HEADER", _header.getText().toString());
-		savedInstanceState.putString("TITLE", _titleTV.getText().toString());
-		savedInstanceState.putString("YEAR", _yearTV.getText().toString());
-		savedInstanceState.putString("MPAA", _mpaaTV.getText().toString());
-		savedInstanceState.putString("RUNTIME", _runtimeTV.getText().toString());
-		savedInstanceState.putString("CRITICS", _criticsTV.getText().toString());
-		savedInstanceState.putString("LINK", _link);
-	}
 }

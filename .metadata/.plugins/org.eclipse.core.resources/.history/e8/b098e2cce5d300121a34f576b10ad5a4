@@ -170,6 +170,10 @@ public class MainActivity extends Activity {
 									FileStorageManager.getFileStuffInstance()
 											.storeObjectFile(_context, "Movie",
 													_json.toString(), true);
+									_link = new String(_json.getJSONObject(
+											"posters").getString(
+											getString(R.string.thumbnailAPI)
+													.toString()));
 									// Set Text Values
 									_searchField.setText(_json.getString(
 											"title").toString());
@@ -195,12 +199,8 @@ public class MainActivity extends Activity {
 											getString(R.string.critics_consensusAPI))
 											.toString());
 									//Poster
-									_link = new String(_json.getJSONObject(
-											"posters").getString(
-											getString(R.string.thumbnailAPI)
-													.toString()));
+									
 									_iView.setImageUrl(_link);
-									_iView.refreshDrawableState();
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
