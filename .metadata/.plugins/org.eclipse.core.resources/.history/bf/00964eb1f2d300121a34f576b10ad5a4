@@ -120,6 +120,7 @@ public class MainActivity extends Activity {
 					// Set Text Values
 					_searchField.setText(_json.getString(
 							"title").toString());
+					_header.setText("Movie Found!");
 					//Title
 					_titleTV.setText(_json.getString(
 							getString(R.string.titleAPI))

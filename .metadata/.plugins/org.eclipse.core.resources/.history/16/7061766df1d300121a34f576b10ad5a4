@@ -106,46 +106,15 @@ public class MainActivity extends Activity {
 			// Warning Display
 			_header.setText("No connection. Viewing last searched movie.");
 
-			
 			// Load last JSON file
-			FileStorageManager.getFileStuffInstance();
-			String stored = (String) FileStorageManager.readStringFile(_context, "Movie", true);
+			String stored = FileStorageManager.getFileStuffInstance().readStringFile(_context, "Movie", true);
 //			Object stored = FileStorageManager.getFileStuffInstance().readObjectFile(
 //					_context, "Movie", true);
 			if (stored != null) {
 				//String temp = (String) stored;
 				try {
 					_json = new JSONObject(stored);
-					Log.i("SAVED JSON", _json.toString());
-					// Set Text Values
-					_searchField.setText(_json.getString(
-							"title").toString());
-					//Title
-					_titleTV.setText(_json.getString(
-							getString(R.string.titleAPI))
-							.toString());
-					// Year
-					_yearTV.setText(_json.getString(
-							getString(R.string.yearAPI))
-							.toString());
-					// Rating
-					_mpaaTV.setText(_json.getString(
-							getString(R.string.mpaa_ratingAPI))
-							.toString());
-					// Runtime
-					_runtimeTV.setText(_json.getString(
-							getString(R.string.runtimeAPI))
-							.toString()+" minutes");
-					// Critics
-					_criticsTV.setText(_json.getString(
-							getString(R.string.critics_consensusAPI))
-							.toString());
-					//Poster
-					_link = new String(_json.getJSONObject(
-							"posters").getString(
-							getString(R.string.thumbnailAPI)
-									.toString()));
-					_iView.setImageUrl(_link);
+					Log.i("JSON", _json.toString());
 
 				} catch (JSONException e) {
 					Log.e("SAVED FILE", "CANT MAKE JSON");
