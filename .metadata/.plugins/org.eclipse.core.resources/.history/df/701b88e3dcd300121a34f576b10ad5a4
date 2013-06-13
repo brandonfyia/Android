@@ -55,7 +55,6 @@ public class MainActivity extends Activity {
 	TextView _runtimeTV;
 	TextView _criticsTV;
 	SmartImageView _iView;
-	GridLayout _gl;
 	
 	/*
 	 * (non-Javadoc)
@@ -70,7 +69,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		// Set defaults for variables
-		_context = this;
 		_searchField = (EditText) findViewById(R.id.searchField);
 		_header = (TextView) findViewById(R.id.header);
 		_titleTV = (TextView) findViewById(R.id.titleTV);
@@ -79,8 +77,7 @@ public class MainActivity extends Activity {
 		_runtimeTV = (TextView) findViewById(R.id.runtimeTV);
 		_criticsTV = (TextView) findViewById(R.id.criticsTV);
 		_iView = new SmartImageView(_context);
-		_gl = (GridLayout) findViewById(R.id.gridLayout);
-		
+		_context = this;
 
 		// Set Header Default text
 		_header.setText("Search For A Movie");
@@ -130,7 +127,7 @@ public class MainActivity extends Activity {
 				_mpaaTV.setText("");
 				_runtimeTV.setText("");
 				_criticsTV.setText("");
-				_gl.removeView(_iView);
+				_iView.setImageUrl(null);
 				// Send text field entry to URL builder and request API
 				//HTTP Service Handler
 				Handler webHandler = new Handler() {
@@ -192,8 +189,9 @@ public class MainActivity extends Activity {
 									LayoutParams lp = new LinearLayout.LayoutParams(
 											LinearLayout.LayoutParams.MATCH_PARENT,
 											LinearLayout.LayoutParams.WRAP_CONTENT);
+									GridLayout gl = (GridLayout) findViewById(R.id.gridLayout);
 									_iView.setLayoutParams(lp);
-									_gl.addView(_iView);
+									gl.addView(_iView);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
