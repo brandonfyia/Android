@@ -1,11 +1,6 @@
 package com.example.lib;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.example.java1week2_4.FileStorageManager;
-import com.example.java1week2_4.MainActivity;
-import com.example.java1week2_4.R;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -87,27 +82,12 @@ public class MovieProvider extends ContentProvider{
 		MatrixCursor result = new MatrixCursor(MovieData.PROJECTION);
 		
 		FileStorageManager.getFileStuffInstance();
-		String JSONString = (String) FileStorageManager.readStringFile(getContext(), "Movie", true);
-		JSONObject job = null;
-		try {
-			job = new JSONObject(JSONString);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		String JSONString = (String) FileStorageManager.readStringFile(MovieProvider.this, "Movie", true);
 		switch (uriMatcher.match(uri)) {
 		case ITEMS:
-			
-			try {
-				result.addRow(new Object[]{1, job.getString("title"),job.getString("title"),job.getString("title"),job.getString("title"),job.getString("title") });
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			return MovieData.CONTENT_TYPE;
 		case ITEMS_ID:
-			
+			return MovieData.CONTENT_ITEM_TYPE;
 		}
 		
 		return null;

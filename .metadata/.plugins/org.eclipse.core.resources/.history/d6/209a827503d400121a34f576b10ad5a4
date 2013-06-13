@@ -99,12 +99,7 @@ public class MovieProvider extends ContentProvider{
 		switch (uriMatcher.match(uri)) {
 		case ITEMS:
 			
-			try {
-				result.addRow(new Object[]{1, job.getString("title"),job.getString("title"),job.getString("title"),job.getString("title"),job.getString("title") });
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			result.addRow(new Object[]{1, job.getString("title")});
 			
 		case ITEMS_ID:
 			
