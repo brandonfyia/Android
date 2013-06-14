@@ -208,7 +208,8 @@ public class MainActivity extends Activity {
 									String temp = new String(cursor.getString(2));
 									Log.i("Cursor", temp);
 									// Set Text Values
-									_searchField.setText(cursor.getString(1));
+									_searchField.setText(_json.getString(
+											"title").toString());
 									_header.setText("Movie Found!");
 									//Title
 									_titleTV.setText(cursor.getString(1));
