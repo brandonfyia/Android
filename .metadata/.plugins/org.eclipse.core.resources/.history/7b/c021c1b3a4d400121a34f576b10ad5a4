@@ -212,17 +212,30 @@ public class MainActivity extends Activity {
 											"title").toString());
 									_header.setText("Movie Found!");
 									//Title
-									_titleTV.setText(cursor.getString(1));
+									_titleTV.setText(_json.getString(
+											getString(R.string.titleAPI))
+											.toString());
 									// Year
-									_yearTV.setText(cursor.getString(2));
+									_yearTV.setText(_json.getString(
+											getString(R.string.yearAPI))
+											.toString());
 									// Rating
-									_mpaaTV.setText(cursor.getString(3));
+									_mpaaTV.setText(_json.getString(
+											getString(R.string.mpaa_ratingAPI))
+											.toString());
 									// Runtime
-									_runtimeTV.setText(cursor.getString(4)+" minutes");
+									_runtimeTV.setText(_json.getString(
+											getString(R.string.runtimeAPI))
+											.toString()+" minutes");
 									// Critics
-									_criticsTV.setText(cursor.getString(5));
+									_criticsTV.setText(_json.getString(
+											getString(R.string.critics_consensusAPI))
+											.toString());
 									//Poster
-									_link = new String(cursor.getString(6));
+									_link = new String(_json.getJSONObject(
+											"posters").getString(
+											getString(R.string.thumbnailAPI)
+													.toString()));
 									_iView.setImageUrl(_link);
 								}
 							} catch (Exception e) {

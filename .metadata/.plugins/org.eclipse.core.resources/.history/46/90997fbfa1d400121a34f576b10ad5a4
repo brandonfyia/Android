@@ -35,7 +35,6 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lib.MovieProvider;
 import com.example.lib.WebManager;
 import com.loopj.android.image.SmartImageView;
 
@@ -203,8 +202,8 @@ public class MainActivity extends Activity {
 									FileStorageManager.getFileStuffInstance();
 									FileStorageManager.storeStringFile(_context, "Movie", storedJSON.toString(), true);
 									//Pull data back from content provider (movie provider)
-									Cursor cursor = getContentResolver().query(MovieProvider.MovieData.CONTENT_URI, null, null, null, null);
-									cursor.moveToFirst();
+									Uri uri = Uri.parse("com.example.java1week2_4.movieprovider/");
+									Cursor cursor = getContentResolver().query(uri, null, null, null, null);
 									String temp = new String(cursor.getString(2));
 									Log.i("Cursor", temp);
 									// Set Text Values
@@ -212,17 +211,30 @@ public class MainActivity extends Activity {
 											"title").toString());
 									_header.setText("Movie Found!");
 									//Title
-									_titleTV.setText(cursor.getString(1));
+									_titleTV.setText(_json.getString(
+											getString(R.string.titleAPI))
+											.toString());
 									// Year
-									_yearTV.setText(cursor.getString(2));
+									_yearTV.setText(_json.getString(
+											getString(R.string.yearAPI))
+											.toString());
 									// Rating
-									_mpaaTV.setText(cursor.getString(3));
+									_mpaaTV.setText(_json.getString(
+											getString(R.string.mpaa_ratingAPI))
+											.toString());
 									// Runtime
-									_runtimeTV.setText(cursor.getString(4)+" minutes");
+									_runtimeTV.setText(_json.getString(
+											getString(R.string.runtimeAPI))
+											.toString()+" minutes");
 									// Critics
-									_criticsTV.setText(cursor.getString(5));
+									_criticsTV.setText(_json.getString(
+											getString(R.string.critics_consensusAPI))
+											.toString());
 									//Poster
-									_link = new String(cursor.getString(6));
+									_link = new String(_json.getJSONObject(
+											"posters").getString(
+											getString(R.string.thumbnailAPI)
+													.toString()));
 									_iView.setImageUrl(_link);
 								}
 							} catch (Exception e) {

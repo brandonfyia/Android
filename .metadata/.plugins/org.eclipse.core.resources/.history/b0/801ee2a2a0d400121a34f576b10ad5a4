@@ -74,6 +74,8 @@ public class MovieProvider extends ContentProvider{
 		switch (uriMatcher.match(uri)) {
 		case ITEMS:
 			return MovieData.CONTENT_TYPE;
+		case ITEMS_ID:
+			return MovieData.CONTENT_ITEM_TYPE;
 		}
 		return null;
 	}
@@ -116,9 +118,6 @@ public class MovieProvider extends ContentProvider{
 						job.getString("runtime"),
 						job.getString("critics_consensus"), 
 						job.getJSONObject("posters").getString("detailed") });
-				Log.i("PROVIDER", "Got Values");
-				Log.i("PROVIDER", "Returned Values");
-				return result;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -170,7 +169,6 @@ public class MovieProvider extends ContentProvider{
 				Log.e("QUERY", "invalid uri - " + uri.toString());
 		}
 		//Send data out
-		Log.i("PROVIDER", "Returned Values");
 		return result;
 	}
 
