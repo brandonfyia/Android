@@ -10,6 +10,10 @@
  */
 package com.example.movieInfo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,6 +62,7 @@ public class MainActivity extends Activity {
 	SmartImageView _iView;
 	GridLayout _gl;
 	String _link;
+	JSONObject _resultJSON;
 	
 	/*
 	 * (non-Javadoc)
@@ -181,14 +186,14 @@ public class MainActivity extends Activity {
 					public void handleMessage(Message msg) {
 						if (msg.arg1 == RESULT_OK && msg.obj != null) {
 							try {
-								JSONObject resultJSON = new JSONObject((String)msg.obj);
+								_resultJSON = new JSONObject((String)msg.obj);
 								// Set data
 								/*
 								 * JSON Array is Movies. object 0 is the first
 								 * result. get string provides the detail
 								 * Object.
 								 */
-								if (resultJSON.getString("total").toString()
+								if (_resultJSON.getString("total").toString()
 										.compareTo("0") == 0) {
 									Toast toast = Toast.makeText(_context,
 											"No movie by that name exists",
@@ -196,37 +201,24 @@ public class MainActivity extends Activity {
 									toast.show();
 									_header.setText("Try Again");
 								} else {
+									//Loop through a JSON Array and get Movie Names
+									ArrayList<HashMap<String, String>> movieList = new ArrayList<HashMap<String,String>>();
+									JSONArray movies = _resultJSON.getJSONArray("movies");
+									int movieSize = movies.length();
+									for (int i = 0; i < movieSize; i++) {
+										JSONObject movieDetails = movies.getJSONObject(i);
+										String title = movieDetails.getString(getString(R.string.titleAPI).toString());
+										
+										HashMap<String, String> displayMap = new HashMap<String, String>();
+										displayMap.put("TITLE", title);
+										
+										movieList.add(displayMap);
+									}
 									//Load Picker Activity
 									Intent nextActivity = new Intent(_context, MoviePickerActivity.class);
-									nextActivity.putExtra("TEST", "I got the string!!");
+									nextActivity.putExtra("HEADER", "We found " + String.valueOf(movieSize) + " movies by that name. Select the one you wanted below.");
+									nextActivity.putExtra("MOVIES", movieList);
 									startActivityForResult(nextActivity, 0);
-									//Trim JSON to just needed part
-									JSONObject storedJSON = resultJSON.getJSONArray("movies")
-											.getJSONObject(0);
-									// Store object in external memory
-									FileStorageManager.getFileStuffInstance();
-									FileStorageManager.storeStringFile(_context, "Movie", storedJSON.toString(), true);
-									//Pull data back from content provider (movie provider)
-									Cursor cursor = getContentResolver().query(MovieProvider.MovieData.CONTENT_URI, null, null, null, null);
-									cursor.moveToFirst();
-									String temp = new String(cursor.getString(2));
-									Log.i("Cursor", temp);
-									// Set Text Values
-									_searchField.setText(cursor.getString(1));
-									_header.setText("Movie Found!");
-									//Title
-									_titleTV.setText(cursor.getString(1));
-									// Year
-									_yearTV.setText(cursor.getString(2));
-									// Rating
-									_mpaaTV.setText(cursor.getString(3));
-									// Runtime
-									_runtimeTV.setText(cursor.getString(4)+" minutes");
-									// Critics
-									_criticsTV.setText(cursor.getString(5));
-									//Poster
-									_link = new String(cursor.getString(6));
-									_iView.setImageUrl(_link);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
@@ -297,7 +289,39 @@ public class MainActivity extends Activity {
 		if (resultCode == RESULT_OK && requestCode == 0) {
 			Bundle results = data.getExtras();
 			if (results != null) {
-				_header.setText(results.getString("TEST"));
+				//Trim JSON to just needed part
+				int movieNumber = results.getInt("MOVIE_NUMBER");
+				try {
+					JSONObject storedJSON = _resultJSON.getJSONArray("movies")
+							.getJSONObject(movieNumber);
+					// Store object in external memory
+					FileStorageManager.getFileStuffInstance();
+					FileStorageManager.storeStringFile(_context, "Movie", storedJSON.toString(), true);
+					//Pull data back from content provider (movie provider)
+					Cursor cursor = getContentResolver().query(MovieProvider.MovieData.CONTENT_URI, null, null, null, null);
+					cursor.moveToFirst();
+					String temp = new String(cursor.getString(2));
+					Log.i("Cursor", temp);
+					// Set Text Values
+					_searchField.setText(cursor.getString(1));
+					_header.setText("Movie Found!");
+					//Title
+					_titleTV.setText(cursor.getString(1));
+					// Year
+					_yearTV.setText(cursor.getString(2));
+					// Rating
+					_mpaaTV.setText(cursor.getString(3));
+					// Runtime
+					_runtimeTV.setText(cursor.getString(4)+" minutes");
+					// Critics
+					_criticsTV.setText(cursor.getString(5));
+					//Poster
+					_link = new String(cursor.getString(6));
+					_iView.setImageUrl(_link);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}

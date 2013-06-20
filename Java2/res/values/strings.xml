@@ -24,6 +24,7 @@
     <string name="runtimeAPI">runtime</string>
     <string name="critics_consensusAPI">critics_consensus</string>
     <string name="thumbnailAPI">detailed</string>
+    <string name="error">Error</string>
 
 </resources>
 

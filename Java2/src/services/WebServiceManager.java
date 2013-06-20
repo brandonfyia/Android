@@ -47,7 +47,7 @@ public class WebServiceManager extends IntentService {
 		String response = "";
 		URL finalURL;
 		try {
-			finalURL = new URL(baseURL + qs + "&page_limit=1");
+			finalURL = new URL(baseURL + qs);
 			
 
 			response = WebManager.getURLStringResponse(finalURL);

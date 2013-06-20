@@ -29,7 +29,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0010;
+        public static final int action_settings=0x7f0a000f;
         public static final int criticsTV=0x7f0a000b;
         public static final int gridLayout=0x7f0a0006;
         public static final int header=0x7f0a0002;
@@ -37,13 +37,12 @@ public final class R {
         public static final int listTV=0x7f0a0000;
         public static final int mainLayout=0x7f0a0001;
         public static final int mpaaTV=0x7f0a0009;
-        public static final int pickerList=0x7f0a000f;
+        public static final int pickerList=0x7f0a000e;
         public static final int posterIV=0x7f0a000c;
         public static final int runtimeTV=0x7f0a000a;
         public static final int scrollView1=0x7f0a0005;
         public static final int searchButton=0x7f0a0004;
         public static final int searchField=0x7f0a0003;
-        public static final int testButton=0x7f0a000e;
         public static final int titleTV=0x7f0a0007;
         public static final int yearTV=0x7f0a0008;
     }
@@ -65,6 +64,7 @@ public final class R {
         public static final int app_title=0x7f070005;
         public static final int critics_consensus=0x7f07000b;
         public static final int critics_consensusAPI=0x7f070011;
+        public static final int error=0x7f070013;
         public static final int go=0x7f070003;
         public static final int hint=0x7f070002;
         public static final int mpaa_rating=0x7f070009;

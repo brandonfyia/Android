@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="com.example.java1week2_4.ShowResults"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
-<fullyQualifiedTypeName name="com.example.java1week2_4.FileStuff"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="android.widget.EditText"/>
-<fullyQualifiedTypeName name="android.widget.Spinner"/>
-<fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="com.example.java1week2_4.R.attr"/>
-<fullyQualifiedTypeName name="java.lang.CharSequence"/>
 <fullyQualifiedTypeName name="com.example.java1week2_4.R.array"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="android.view.inputmethod.InputMethodManager"/>
 <fullyQualifiedTypeName name="android.widget.ImageView"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
@@ -28,10 +17,7 @@
 <fullyQualifiedTypeName name="com.example.java1week2_4.FileStuffSingleton"/>
 <fullyQualifiedTypeName name="android.app.IntentService"/>
 <fullyQualifiedTypeName name="android.os.Handler"/>
-<fullyQualifiedTypeName name="org.json.JSONArray"/>
-<fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="org.apache.http.protocol.HTTP"/>
-<fullyQualifiedTypeName name="android.os.Bundle"/>
 <fullyQualifiedTypeName name="android.os.Messenger"/>
 <fullyQualifiedTypeName name="services.HTTP"/>
 <fullyQualifiedTypeName name="android.os.Message"/>
@@ -40,7 +26,6 @@
 <fullyQualifiedTypeName name="android.widget.LinearLayout.LayoutParams"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="android.widget.GridLayout"/>
-<fullyQualifiedTypeName name="com.example.java1week2_4.R.id"/>
 <fullyQualifiedTypeName name="android.content.ContentProvider"/>
 <fullyQualifiedTypeName name="java.lang.UnsupportedOperationException"/>
 <fullyQualifiedTypeName name="com.example.java1week2_4.R.string"/>
@@ -49,7 +34,6 @@
 <fullyQualifiedTypeName name="android.database.MatrixCursor"/>
 <fullyQualifiedTypeName name="com.example.java1week2_4.FileStorageManager"/>
 <fullyQualifiedTypeName name="com.example.java1week2_4.MainActivity"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="android.R.integer"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
@@ -60,4 +44,20 @@
 <fullyQualifiedTypeName name="com.example.lib.MovieProvider"/>
 <fullyQualifiedTypeName name="com.example.lib.MovieProvider.MovieData"/>
 <fullyQualifiedTypeName name="com.loopj.android.image.SmartImageView"/>
+<fullyQualifiedTypeName name="android.widget.ListView"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView"/>
+<fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.example.movieInfo.MoviePickerActivity"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="android.os.Bundle"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.example.java1week2_4.R.id"/>
+<fullyQualifiedTypeName name="org.json.JSONArray"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
 </qualifiedTypeNameHistroy>

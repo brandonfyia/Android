@@ -8,7 +8,7 @@
  * date    Jun 6, 2013
  * 
  */
-package com.example.java1week2_4;
+package com.example.movieInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,7 +19,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -174,7 +173,7 @@ public class MainActivity extends Activity {
 				_mpaaTV.setText("");
 				_runtimeTV.setText("");
 				_criticsTV.setText("");
-				_gl.removeView(_iView);
+				_iView.setImageUrl(null);
 				// Send text field entry to URL builder and request API
 				//HTTP Service Handler
 				Handler webHandler = new Handler() {
@@ -197,33 +196,12 @@ public class MainActivity extends Activity {
 									toast.show();
 									_header.setText("Try Again");
 								} else {
-									//Trim JSON to just needed part
-									JSONObject storedJSON = resultJSON.getJSONArray("movies")
-											.getJSONObject(0);
-									// Store object in external memory
-									FileStorageManager.getFileStuffInstance();
-									FileStorageManager.storeStringFile(_context, "Movie", storedJSON.toString(), true);
-									//Pull data back from content provider (movie provider)
-									Cursor cursor = getContentResolver().query(MovieProvider.MovieData.CONTENT_URI, null, null, null, null);
-									cursor.moveToFirst();
-									String temp = new String(cursor.getString(2));
-									Log.i("Cursor", temp);
-									// Set Text Values
-									_searchField.setText(cursor.getString(1));
-									_header.setText("Movie Found!");
-									//Title
-									_titleTV.setText(cursor.getString(1));
-									// Year
-									_yearTV.setText(cursor.getString(2));
-									// Rating
-									_mpaaTV.setText(cursor.getString(3));
-									// Runtime
-									_runtimeTV.setText(cursor.getString(4)+" minutes");
-									// Critics
-									_criticsTV.setText(cursor.getString(5));
-									//Poster
-									_link = new String(cursor.getString(6));
-									_iView.setImageUrl(_link);
+									//Loop through a JSON Array and get Movie Names
+									
+									//Load Picker Activity
+									Intent nextActivity = new Intent(_context, MoviePickerActivity.class);
+									nextActivity.putExtra("TEST", "I got the string!!");
+									startActivityForResult(nextActivity, 0);
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
@@ -285,5 +263,50 @@ public class MainActivity extends Activity {
 		savedInstanceState.putString("RUNTIME", _runtimeTV.getText().toString());
 		savedInstanceState.putString("CRITICS", _criticsTV.getText().toString());
 		savedInstanceState.putString("LINK", _link);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK && requestCode == 0) {
+			Bundle results = data.getExtras();
+			if (results != null) {
+				_header.setText(results.getString("TEST"));
+				//Trim JSON to just needed part
+				int movieNumber = results.getInt("MOVIE");
+				try {
+					JSONObject storedJSON = new JSONObject(results.getString("JSON")).getJSONArray("movies")
+							.getJSONObject(movieNumber);
+					// Store object in external memory
+					FileStorageManager.getFileStuffInstance();
+					FileStorageManager.storeStringFile(_context, "Movie", storedJSON.toString(), true);
+					//Pull data back from content provider (movie provider)
+					Cursor cursor = getContentResolver().query(MovieProvider.MovieData.CONTENT_URI, null, null, null, null);
+					cursor.moveToFirst();
+					String temp = new String(cursor.getString(2));
+					Log.i("Cursor", temp);
+					// Set Text Values
+					_searchField.setText(cursor.getString(1));
+					_header.setText("Movie Found!");
+					//Title
+					_titleTV.setText(cursor.getString(1));
+					// Year
+					_yearTV.setText(cursor.getString(2));
+					// Rating
+					_mpaaTV.setText(cursor.getString(3));
+					// Runtime
+					_runtimeTV.setText(cursor.getString(4)+" minutes");
+					// Critics
+					_criticsTV.setText(cursor.getString(5));
+					//Poster
+					_link = new String(cursor.getString(6));
+					_iView.setImageUrl(_link);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
