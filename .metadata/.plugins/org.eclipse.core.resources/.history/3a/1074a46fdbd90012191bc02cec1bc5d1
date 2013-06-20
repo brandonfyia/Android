@@ -20,7 +20,6 @@ import org.json.JSONObject;
 import services.WebServiceManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -66,7 +65,7 @@ public class MainActivity extends Activity {
 	TextView _infoTV;
 	String _link;
 	String _JSONString;
-	ProgressDialog _pDialog;
+	ProgressBar _progressBar;
 	
 	/*
 	 * (non-Javadoc)
@@ -91,6 +90,7 @@ public class MainActivity extends Activity {
 		_criticsTV = (TextView) findViewById(R.id.criticsTV);
 		_iView = (SmartImageView) findViewById(R.id.posterIV);
 		_infoTV = (TextView) findViewById(R.id.infoTV);
+		_progressBar = (ProgressBar) findViewById(R.id.);
 		
 		//Check for previously saved state
 		if (savedInstanceState == null) {
@@ -184,14 +184,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.i("CLICK HANDLER", _searchField.getText().toString());
-				
-				//Progress bar
-				_pDialog = new ProgressDialog(_context);
-			    _pDialog.setMessage("Fetching data");
-			    _pDialog.setIndeterminate(true);
-			    _pDialog.setCancelable(false);
-			    _pDialog.show();
-			    
 				//Clear out all text fields
 				_titleTV.setText("");
 				_yearTV.setText("");
@@ -223,8 +215,6 @@ public class MainActivity extends Activity {
 									toast.show();
 									_header.setText("Try Again");
 								} else {
-									
-								    
 									//Loop through a JSON Array and get Movie Names
 									ArrayList<HashMap<String, String>> movieList = new ArrayList<HashMap<String,String>>();
 									JSONArray movies = resultJSON.getJSONArray("movies");
@@ -238,14 +228,11 @@ public class MainActivity extends Activity {
 										
 										movieList.add(displayMap);
 									}
-									//Close Progress Bar
-									_pDialog.dismiss();
 									//Load Picker Activity
 									Intent nextActivity = new Intent(_context, MoviePickerActivity.class);
 									nextActivity.putExtra("HEADER", "We found " + String.valueOf(movieSize) + " movies by that name. Select the one you wanted below.");
 									nextActivity.putExtra("MOVIES", movieList);
 									startActivityForResult(nextActivity, 0);
-									
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
@@ -254,7 +241,6 @@ public class MainActivity extends Activity {
 							}
 						}
 					}
-					
 				};
 				//HTTP Service Messenger
 				Messenger webMessenger = new Messenger(webHandler);
@@ -268,9 +254,7 @@ public class MainActivity extends Activity {
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
 						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-				
 			}
-			
 		});
 		
 		//More Info Link handler

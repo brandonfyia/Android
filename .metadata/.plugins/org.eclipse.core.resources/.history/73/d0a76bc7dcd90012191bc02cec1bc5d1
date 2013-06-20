@@ -66,7 +66,6 @@ public class MainActivity extends Activity {
 	TextView _infoTV;
 	String _link;
 	String _JSONString;
-	ProgressDialog _pDialog;
 	
 	/*
 	 * (non-Javadoc)
@@ -186,11 +185,11 @@ public class MainActivity extends Activity {
 				Log.i("CLICK HANDLER", _searchField.getText().toString());
 				
 				//Progress bar
-				_pDialog = new ProgressDialog(_context);
-			    _pDialog.setMessage("Fetching data");
-			    _pDialog.setIndeterminate(true);
-			    _pDialog.setCancelable(false);
-			    _pDialog.show();
+				ProgressDialog pDialog = new ProgressDialog(_context);
+			    pDialog.setMessage("Fetching data");
+			    pDialog.setIndeterminate(true);
+			    pDialog.setCancelable(false);
+			    pDialog.show();
 			    
 				//Clear out all text fields
 				_titleTV.setText("");
@@ -238,14 +237,13 @@ public class MainActivity extends Activity {
 										
 										movieList.add(displayMap);
 									}
-									//Close Progress Bar
-									_pDialog.dismiss();
+									
 									//Load Picker Activity
 									Intent nextActivity = new Intent(_context, MoviePickerActivity.class);
 									nextActivity.putExtra("HEADER", "We found " + String.valueOf(movieSize) + " movies by that name. Select the one you wanted below.");
 									nextActivity.putExtra("MOVIES", movieList);
 									startActivityForResult(nextActivity, 0);
-									
+									pDialog.dismiss();
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
@@ -254,7 +252,6 @@ public class MainActivity extends Activity {
 							}
 						}
 					}
-					
 				};
 				//HTTP Service Messenger
 				Messenger webMessenger = new Messenger(webHandler);
@@ -268,9 +265,7 @@ public class MainActivity extends Activity {
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
 						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-				
 			}
-			
 		});
 		
 		//More Info Link handler
