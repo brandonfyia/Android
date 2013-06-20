@@ -28,6 +28,7 @@
         <activity 
             android:name="com.example.movieInfo.MoviePickerActivity"
             android:label="Movie Picker">
+            
         </activity>
         <service android:name="services.WebServiceManager"></service>
         <provider android:name="com.example.lib.MovieProvider" android:authorities="com.example.java1week2_4.movieprovider" android:exported="true"></provider>
