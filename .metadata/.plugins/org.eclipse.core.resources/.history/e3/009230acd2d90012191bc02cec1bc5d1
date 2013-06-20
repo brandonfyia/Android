@@ -187,7 +187,6 @@ public class MainActivity extends Activity {
 				_mpaaTV.setText("");
 				_runtimeTV.setText("");
 				_criticsTV.setText("");
-				_infoTV.setText("");
 				_iView.setImageUrl(null);
 				// Send text field entry to URL builder and request API
 				//HTTP Service Handler

@@ -109,56 +109,14 @@ public class MovieProvider extends ContentProvider{
 		switch (uriMatcher.match(uri)) {
 		case ITEMS:
 			try {
-				String title;
-				String year;
-				String mpaa_rating;
-				String runtime;
-				String critics_consensus;
-				String posters;
-				String links;
-				if (job.has("title")) {
-					title = job.getString("title");
-				} else {
-					title = "No information availible";
-				}
-				if (job.has("year")) {
-					year = job.getString("year");
-				} else {
-					year = "No information availible";
-				}
-				if (job.has("mpaa_rating")) {
-					mpaa_rating = job.getString("mpaa_rating");
-				} else {
-					mpaa_rating = "No information availible";
-				}
-				if (job.has("runtime")) {
-					runtime = job.getString("runtime");
-				} else {
-					runtime = "No information availible";
-				}
-				if (job.has("critics_consensus")) {
-					critics_consensus = job.getString("critics_consensus");
-				} else {
-					critics_consensus = "No information availible";
-				}
-				if (job.has("posters") && job.getJSONObject("posters").has("detailed")) {
-					posters = job.getJSONObject("posters").getString("detailed");
-				} else {
-					posters = "No information availible";
-				}
-				if (job.has("links") && job.getJSONObject("links").has("alternate")) {
-					links = job.getJSONObject("links").getString("alternate");
-				} else {
-					links = "No information availible";
-				}
 				result.addRow(new Object[]{1, 
-						title,
-						year,
-						mpaa_rating,
-						runtime,
-						critics_consensus, 
-						posters, 
-						links});
+						job.getString("title"),
+						job.getString("year"),
+						job.getString("mpaa_rating"),
+						job.getString("runtime"),
+						job.getString("critics_consensus"), 
+						job.getJSONObject("posters").getString("detailed"), 
+						job.getJSONObject("links").getString("alternate")});
 				Log.i("PROVIDER", "Got Values");
 				Log.i("PROVIDER", "Returned Values");
 				return result;

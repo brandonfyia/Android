@@ -116,38 +116,38 @@ public class MovieProvider extends ContentProvider{
 				String critics_consensus;
 				String posters;
 				String links;
-				if (job.has("title")) {
+				if (job.getString("title") != null) {
 					title = job.getString("title");
 				} else {
 					title = "No information availible";
 				}
-				if (job.has("year")) {
+				if (job.getString("year") != null) {
 					year = job.getString("year");
 				} else {
 					year = "No information availible";
 				}
-				if (job.has("mpaa_rating")) {
+				if (job.getString("mpaa_rating") != null) {
 					mpaa_rating = job.getString("mpaa_rating");
 				} else {
 					mpaa_rating = "No information availible";
 				}
-				if (job.has("runtime")) {
+				if (job.getString("runtime") != null) {
 					runtime = job.getString("runtime");
 				} else {
 					runtime = "No information availible";
 				}
-				if (job.has("critics_consensus")) {
+				if (job.getString("critics_consensus") != null) {
 					critics_consensus = job.getString("critics_consensus");
 				} else {
 					critics_consensus = "No information availible";
 				}
-				if (job.has("posters") && job.getJSONObject("posters").has("detailed")) {
-					posters = job.getJSONObject("posters").getString("detailed");
+				if (job.getJSONObject("posters").getString("detailed") != null) {
+					posters = job.getString("posters");
 				} else {
 					posters = "No information availible";
 				}
-				if (job.has("links") && job.getJSONObject("links").has("alternate")) {
-					links = job.getJSONObject("links").getString("alternate");
+				if (job.getJSONObject("links").getString("alternate") != null) {
+					links = job.getString("links");
 				} else {
 					links = "No information availible";
 				}

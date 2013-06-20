@@ -142,12 +142,12 @@ public class MovieProvider extends ContentProvider{
 					critics_consensus = "No information availible";
 				}
 				if (job.has("posters") && job.getJSONObject("posters").has("detailed")) {
-					posters = job.getJSONObject("posters").getString("detailed");
+					posters = job.getString("posters");
 				} else {
 					posters = "No information availible";
 				}
 				if (job.has("links") && job.getJSONObject("links").has("alternate")) {
-					links = job.getJSONObject("links").getString("alternate");
+					links = job.getString("links");
 				} else {
 					links = "No information availible";
 				}
