@@ -296,9 +296,6 @@ public class MainActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK && requestCode == 0) {
 			Bundle results = data.getExtras();
-			if (results != null) {
-				_header.setText(results.getString("TEST"));
-			}
 		}
 	}
 }

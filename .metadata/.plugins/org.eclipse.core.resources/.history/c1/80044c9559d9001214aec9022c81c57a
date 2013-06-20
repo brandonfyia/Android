@@ -173,7 +173,7 @@ public class MainActivity extends Activity {
 				_mpaaTV.setText("");
 				_runtimeTV.setText("");
 				_criticsTV.setText("");
-				_iView.setImageUrl(null);
+				_gl.removeView(_iView);
 				// Send text field entry to URL builder and request API
 				//HTTP Service Handler
 				Handler webHandler = new Handler() {
@@ -196,10 +196,6 @@ public class MainActivity extends Activity {
 									toast.show();
 									_header.setText("Try Again");
 								} else {
-									//Load Picker Activity
-									Intent nextActivity = new Intent(_context, MoviePickerActivity.class);
-									nextActivity.putExtra("TEST", "I got the string!!");
-									startActivityForResult(nextActivity, 0);
 									//Trim JSON to just needed part
 									JSONObject storedJSON = resultJSON.getJSONArray("movies")
 											.getJSONObject(0);
@@ -288,17 +284,5 @@ public class MainActivity extends Activity {
 		savedInstanceState.putString("RUNTIME", _runtimeTV.getText().toString());
 		savedInstanceState.putString("CRITICS", _criticsTV.getText().toString());
 		savedInstanceState.putString("LINK", _link);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK && requestCode == 0) {
-			Bundle results = data.getExtras();
-			if (results != null) {
-				_header.setText(results.getString("TEST"));
-			}
-		}
 	}
 }
