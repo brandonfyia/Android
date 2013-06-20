@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="480,442" key="UserLibraryLoadSaveDialog.size"/>
 	<item value="filter_imports;" key="filters_last_used"/>
 	<item value="/Users/BrandonFYIA/Documents/Code Librarys/Android Smart Image View" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="DialogBounds_OverrideMethodDialog">
@@ -24,9 +25,13 @@
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item value="3" key="index"/>
+	</section>
 	<section name="SourceActionDialog.methods">
 		<item value="1" key="VisibilityModifier"/>
 		<item value="false" key="Comments"/>
+		<item value="1" key="InsertPosition.v2"/>
 		<item value="false" key="SynchronizedModifier"/>
 		<item value="false" key="FinalModifier"/>
 	</section>

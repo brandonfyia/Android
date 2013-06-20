@@ -10,3 +10,4 @@ org.eclipse.jdt.core.compiler.compliance=1.6
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.source=1.6
+org.eclipse.jdt.core.userLibrary.third\ party\ libs=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary systemlibrary\="false" version\="2">\n\t<archive path\="/Users/BrandonFYIA/Documents/Code Librarys/Android Smart Image View/android-smart-image-view-1.0.0.jar"/>\n</userlibrary>\n
