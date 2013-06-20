@@ -47,11 +47,6 @@ public class MoviePickerActivity extends Activity {
 			_movieList = (ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra("MOVIES");
 		}
 		
-		//Check for previously saved state
-				if (savedInstanceState != null) {
-					_movieNumber = savedInstanceState.getInt("MOVIE_NUMBER");
-				}
-		
 		//List View Setup
 		SimpleAdapter adapter = new SimpleAdapter(_context, _movieList, R.layout.list_row, new String[] {"TITLE"}, new int[] {R.id.listTV});
 		_listView.setAdapter(adapter);
@@ -78,10 +73,9 @@ public class MoviePickerActivity extends Activity {
 	}
 
 	@Override
-	protected void onSaveInstanceState(Bundle savedInstanceState) {
+	protected void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
-		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putInt("MOVIE_NUMBER", _movieNumber);
+		super.onSaveInstanceState(outState);
 	}
 
 }

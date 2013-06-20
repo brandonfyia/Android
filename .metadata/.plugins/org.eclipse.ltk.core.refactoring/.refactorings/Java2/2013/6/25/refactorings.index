@@ -8,3 +8,4 @@
 1371695775131	Copy file
 1371706298900	Extracts string 'Error' into R.string.error
 1371711511431	Rename field 'resultJSON'
+1371712789642	Rename local variable '_resultJSON'

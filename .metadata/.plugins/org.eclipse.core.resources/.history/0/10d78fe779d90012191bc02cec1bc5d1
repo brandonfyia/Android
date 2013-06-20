@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 			_runtimeTV.setText(savedInstanceState.getString("RUNTIME"));
 			_criticsTV.setText(savedInstanceState.getString("CRITICS"));
 			_iView.setImageUrl(savedInstanceState.getString("LINK"));
-			_JSONString = savedInstanceState.getString("JSON");
+			_JSONString = new JSONObject("JSON");
 		}
 		
 		// Detect Network connection

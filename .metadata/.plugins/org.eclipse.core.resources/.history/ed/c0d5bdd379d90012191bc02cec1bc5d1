@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 			_runtimeTV.setText(savedInstanceState.getString("RUNTIME"));
 			_criticsTV.setText(savedInstanceState.getString("CRITICS"));
 			_iView.setImageUrl(savedInstanceState.getString("LINK"));
-			_JSONString = savedInstanceState.getString("JSON");
+			_JSONString = new JSONObject("JSON");
 		}
 		
 		// Detect Network connection
@@ -188,14 +188,14 @@ public class MainActivity extends Activity {
 						if (msg.arg1 == RESULT_OK && msg.obj != null) {
 							try {
 								_JSONString = (String)msg.obj;
-								JSONObject resultJSON = new JSONObject(_JSONString);
+								_resultJSON = new JSONObject(_JSONString);
 								// Set data
 								/*
 								 * JSON Array is Movies. object 0 is the first
 								 * result. get string provides the detail
 								 * Object.
 								 */
-								if (resultJSON.getString("total").toString()
+								if (_resultJSON.getString("total").toString()
 										.compareTo("0") == 0) {
 									Toast toast = Toast.makeText(_context,
 											"No movie by that name exists",
@@ -205,7 +205,7 @@ public class MainActivity extends Activity {
 								} else {
 									//Loop through a JSON Array and get Movie Names
 									ArrayList<HashMap<String, String>> movieList = new ArrayList<HashMap<String,String>>();
-									JSONArray movies = resultJSON.getJSONArray("movies");
+									JSONArray movies = _resultJSON.getJSONArray("movies");
 									int movieSize = movies.length();
 									for (int i = 0; i < movieSize; i++) {
 										JSONObject movieDetails = movies.getJSONObject(i);
