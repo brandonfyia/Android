@@ -46,6 +46,13 @@
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:orientation="vertical" >
+            
+            <com.loopj.android.image.SmartImageView
+                android:id="@+id/posterIV"
+                style="@style/GridAnswerText"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="center" />
 
             <TextView
                 style="@style/GridLabelText"
@@ -100,14 +107,13 @@
             <TextView
                 style="@style/GridLabelText"
                 android:layout_gravity="left"
-                android:text="@string/thumbnail" />
+                android:text="@string/info" />
             
-            <com.loopj.android.image.SmartImageView
-                android:id="@+id/posterIV"
+          	<TextView
+                android:id="@+id/infoTV"
                 style="@style/GridAnswerText"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="left" 
+                android:textColor="#4141F2"/>
             
         </GridLayout>
 

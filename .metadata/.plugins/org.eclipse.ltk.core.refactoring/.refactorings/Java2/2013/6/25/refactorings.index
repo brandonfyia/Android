@@ -9,3 +9,5 @@
 1371706298900	Extracts string 'Error' into R.string.error
 1371711511431	Rename field 'resultJSON'
 1371712789642	Rename local variable '_resultJSON'
+1371747656848	Extracts string 'Default Text' into R.string.default_text
+1371748495486	Extracts string 'More Info:' into R.string.info

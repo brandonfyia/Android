@@ -32,8 +32,9 @@ public class MovieProvider extends ContentProvider{
 		public static final String RUNTIME_COLUMN = "runtime";
 		public static final String CRITICS_COLUMN = "critics";
 		public static final String POSTER_COLUMN = "poster";
+		public static final String INFO_COLUMN = "info";
 		
-		public static final String[] PROJECTION = {"_Id", TITLE_COLUMN, YEAR_COLUMN, MPAA_COLUMN, RUNTIME_COLUMN, CRITICS_COLUMN, POSTER_COLUMN};
+		public static final String[] PROJECTION = {"_Id", TITLE_COLUMN, YEAR_COLUMN, MPAA_COLUMN, RUNTIME_COLUMN, CRITICS_COLUMN, POSTER_COLUMN, INFO_COLUMN};
 		
 		private MovieData() {};
 	}
@@ -45,6 +46,7 @@ public class MovieProvider extends ContentProvider{
 	public static final int ITEMS_RUNTIME_FILTER = 5;
 	public static final int ITEMS_CRITICS_FILTER = 6;
 	public static final int ITEMS_POSTER_FILTER = 7;
+	public static final int ITEMS_INFO_FILTER = 8;
 	
 	private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	
@@ -56,6 +58,7 @@ public class MovieProvider extends ContentProvider{
 		uriMatcher.addURI(AUTHORITY, "items/runtime/*", ITEMS_RUNTIME_FILTER);
 		uriMatcher.addURI(AUTHORITY, "items/critics/*", ITEMS_CRITICS_FILTER);
 		uriMatcher.addURI(AUTHORITY, "items/poster/*", ITEMS_POSTER_FILTER);
+		uriMatcher.addURI(AUTHORITY, "items/info/*", ITEMS_INFO_FILTER);
 	}
 	
 	@Override
@@ -112,7 +115,8 @@ public class MovieProvider extends ContentProvider{
 						job.getString("mpaa_rating"),
 						job.getString("runtime"),
 						job.getString("critics_consensus"), 
-						job.getJSONObject("posters").getString("detailed") });
+						job.getJSONObject("posters").getString("detailed"), 
+						job.getJSONObject("links").getString("alternate")});
 				Log.i("PROVIDER", "Got Values");
 				Log.i("PROVIDER", "Returned Values");
 				return result;
@@ -159,6 +163,13 @@ public class MovieProvider extends ContentProvider{
 		case ITEMS_POSTER_FILTER:
 			try {
 				result.addRow(new Object[]{1,job.getJSONObject("posters").getString("detailed")});
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		case ITEMS_INFO_FILTER:
+			try {
+				result.addRow(new Object[]{1,job.getJSONObject("links").getString("alternate")});
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

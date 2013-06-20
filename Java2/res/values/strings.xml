@@ -6,6 +6,8 @@
     <string name="go">GO</string>
     <string name="title_string">Movie Info</string>
     <string name="app_title">Movie Info</string>
+    <string name="error">Error</string>
+    <string name="default_text">Default Text</string>
     
     
     <!-- For @arrays/detailsArray -->
@@ -16,6 +18,7 @@
     <string name="runtime">Runtime:</string>
     <string name="critics_consensus">The Critics Consensus:</string>
     <string name="thumbnail">Poster:</string>
+    <string name="info">More Info:</string>
     
     <!-- API values -->
     <string name="titleAPI">title</string>
@@ -24,7 +27,9 @@
     <string name="runtimeAPI">runtime</string>
     <string name="critics_consensusAPI">critics_consensus</string>
     <string name="thumbnailAPI">detailed</string>
-    <string name="error">Error</string>
+    <string name="infoAPI">alternate</string>
+    
+    
 
 </resources>
 

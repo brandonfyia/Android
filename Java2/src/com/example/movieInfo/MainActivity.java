@@ -23,6 +23,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,7 +36,6 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +61,7 @@ public class MainActivity extends Activity {
 	TextView _runtimeTV;
 	TextView _criticsTV;
 	SmartImageView _iView;
-	GridLayout _gl;
+	TextView _infoTV;
 	String _link;
 	String _JSONString;
 	
@@ -86,7 +87,7 @@ public class MainActivity extends Activity {
 		_runtimeTV = (TextView) findViewById(R.id.runtimeTV);
 		_criticsTV = (TextView) findViewById(R.id.criticsTV);
 		_iView = (SmartImageView) findViewById(R.id.posterIV);
-		_gl = (GridLayout) findViewById(R.id.gridLayout);
+		_infoTV = (TextView) findViewById(R.id.infoTV);
 		
 		//Check for previously saved state
 		if (savedInstanceState == null) {
@@ -102,6 +103,7 @@ public class MainActivity extends Activity {
 			_runtimeTV.setText(savedInstanceState.getString("RUNTIME"));
 			_criticsTV.setText(savedInstanceState.getString("CRITICS"));
 			_iView.setImageUrl(savedInstanceState.getString("LINK"));
+			_infoTV.setText(savedInstanceState.getString("INFO"));
 			_JSONString = savedInstanceState.getString("JSON");
 		}
 		
@@ -150,6 +152,12 @@ public class MainActivity extends Activity {
 					_link = new String(_json.getJSONObject(
 							"posters").getString(
 							getString(R.string.thumbnailAPI)
+									.toString()));
+					_iView.setImageUrl(_link);
+					//Info
+					_link = new String(_json.getJSONObject(
+							"links").getString(
+							getString(R.string.infoAPI)
 									.toString()));
 					_iView.setImageUrl(_link);
 
@@ -243,7 +251,18 @@ public class MainActivity extends Activity {
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
 						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			}
-		});				
+		});
+		
+		//More Info Link handler
+		_infoTV.setPaintFlags(_infoTV.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		_infoTV.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent infoIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(_infoTV.getText().toString()));
+				startActivity(infoIntent);
+				
+			}
+		});
 	};
 
 	/*
@@ -282,6 +301,7 @@ public class MainActivity extends Activity {
 		savedInstanceState.putString("RUNTIME", _runtimeTV.getText().toString());
 		savedInstanceState.putString("CRITICS", _criticsTV.getText().toString());
 		savedInstanceState.putString("LINK", _link);
+		savedInstanceState.putString("INFO", _infoTV.getText().toString());
 		savedInstanceState.putString("JSON", _JSONString);
 	}
 
@@ -320,6 +340,8 @@ public class MainActivity extends Activity {
 					//Poster
 					_link = new String(cursor.getString(6));
 					_iView.setImageUrl(_link);
+					//Info
+					_infoTV.setText(cursor.getString(7));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
