@@ -48,7 +48,6 @@ import com.loopj.android.image.SmartImageView;
 /**
  * The Class MainActivity.
  */
-@SuppressLint({ "NewApi", "InlinedApi" })
 public class MainActivity extends Activity {
 
 	// Global variables
@@ -222,8 +221,6 @@ public class MainActivity extends Activity {
 											Toast.LENGTH_LONG);
 									toast.show();
 									_header.setText("Try Again");
-									//Close Progress Bar
-									_pDialog.dismiss();
 								} else {
 									
 								    

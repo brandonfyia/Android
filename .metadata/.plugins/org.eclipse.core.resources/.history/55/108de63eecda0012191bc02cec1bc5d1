@@ -48,7 +48,6 @@ import com.loopj.android.image.SmartImageView;
 /**
  * The Class MainActivity.
  */
-@SuppressLint({ "NewApi", "InlinedApi" })
 public class MainActivity extends Activity {
 
 	// Global variables
