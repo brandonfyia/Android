@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extracts string &apos;Search For A Movie&apos; into R.string.header_default" description="Extracts string &apos;Search For A Movie&apos; into R.string.header_default" file="/Java2/res/layout/main.xml" flags="6" id="com.android.ide.eclipse.adt.refactoring.extract.string" mode="EDIT_SOURCE" proj="/Java2" rplc-all-java="false" rplc-all-xml="false" sel-end="555" sel-start="523" stamp="1372298347342" tok-esc="Search For A Movie" xml-attr-name="android:text"/>
+</session>

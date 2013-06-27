@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 	String _link;
 	String _JSONString;
 	ProgressDialog _pDialog;
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -86,18 +86,18 @@ public class MainActivity extends Activity {
 		_header = (TextView) findViewById(R.id.header);
 		_titleTV = (TextView) findViewById(R.id.titleTV);
 		_yearTV = (TextView) findViewById(R.id.yearTV);
-		_mpaaTV = (TextView) findViewById(R.id.mpaaTV);
+	    _mpaaTV = (TextView) findViewById(R.id.mpaaTV);
 		_runtimeTV = (TextView) findViewById(R.id.runtimeTV);
 		_criticsTV = (TextView) findViewById(R.id.criticsTV);
 		_iView = (SmartImageView) findViewById(R.id.posterIV);
 		_infoTV = (TextView) findViewById(R.id.infoTV);
-
-		// Check for previously saved state
+		
+		//Check for previously saved state
 		if (savedInstanceState == null) {
 			// Set Header Default text
 			_header.setText("Search For A Movie");
 		} else {
-			// Restore old Values
+			//Restore old Values
 			_JSONString = savedInstanceState.getString("JSON");
 			displayResults(savedInstanceState.getString("HEADER"),
 					savedInstanceState.getString("TITLE"),
@@ -106,9 +106,10 @@ public class MainActivity extends Activity {
 					savedInstanceState.getString("RUNTIME"),
 					savedInstanceState.getString("CRITICS"),
 					savedInstanceState.getString("LINK"),
-					savedInstanceState.getString("INFO"));
+					savedInstanceState.getString("INFO")
+			);
 		}
-
+		
 		// Detect Network connection
 		_connected = WebManager.getConnectionStatus(_context);
 		if (_connected) {
@@ -118,31 +119,20 @@ public class MainActivity extends Activity {
 
 			// Load last JSON file
 			FileStorageManager.getFileStuffInstance();
-			String stored = (String) FileStorageManager.readStringFile(
-					_context, "Movie", true);
+			String stored = (String) FileStorageManager.readStringFile(_context, "Movie", true);
 			if (stored != null) {
 				try {
 					_json = new JSONObject(stored);
 					Log.i("SAVED JSON", _json.toString());
-					displayResults(
-							"No connection. Viewing last searched movie.",
-							_json.getString(getString(R.string.titleAPI))
-									.toString(),
-							_json.getString(getString(R.string.yearAPI))
-									.toString(),
-							_json.getString(getString(R.string.mpaa_ratingAPI))
-									.toString(),
-							_json.getString(getString(R.string.runtimeAPI))
-									.toString(),
-							_json.getString(
-									getString(R.string.critics_consensusAPI))
-									.toString(),
-							_json.getJSONObject("posters")
-									.getString(
-											getString(R.string.thumbnailAPI)
-													.toString()),
-							_json.getJSONObject("links").getString(
-									getString(R.string.infoAPI).toString()));
+					displayResults("No connection. Viewing last searched movie.",
+							_json.getString(getString(R.string.titleAPI)).toString(), 
+							_json.getString(getString(R.string.yearAPI)).toString(), 
+							_json.getString(getString(R.string.mpaa_ratingAPI)).toString(), 
+							_json.getString(getString(R.string.runtimeAPI)).toString(), 
+							_json.getString(getString(R.string.critics_consensusAPI)).toString(), 
+							_json.getJSONObject("posters").getString(getString(R.string.thumbnailAPI).toString()), 
+							_json.getJSONObject("links").getString(getString(R.string.infoAPI).toString())
+					);
 
 				} catch (JSONException e) {
 					Log.e("SAVED FILE", "CANT MAKE JSON");
@@ -164,15 +154,15 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.i("CLICK HANDLER", _searchField.getText().toString());
-
-				// Progress bar
+				
+				//Progress bar
 				_pDialog = new ProgressDialog(_context);
-				_pDialog.setMessage("Fetching data");
-				_pDialog.setIndeterminate(true);
-				_pDialog.setCancelable(false);
-				_pDialog.show();
-
-				// Clear out all text fields
+			    _pDialog.setMessage("Fetching data");
+			    _pDialog.setIndeterminate(true);
+			    _pDialog.setCancelable(false);
+			    _pDialog.show();
+			    
+				//Clear out all text fields
 				_titleTV.setText("");
 				_yearTV.setText("");
 				_mpaaTV.setText("");
@@ -181,15 +171,14 @@ public class MainActivity extends Activity {
 				_infoTV.setText("");
 				_iView.setImageUrl(null);
 				// Send text field entry to URL builder and request API
-				// HTTP Service Handler
+				//HTTP Service Handler
 				Handler webHandler = new Handler() {
 					@Override
 					public void handleMessage(Message msg) {
 						if (msg.arg1 == RESULT_OK && msg.obj != null) {
 							try {
-								_JSONString = (String) msg.obj;
-								JSONObject resultJSON = new JSONObject(
-										_JSONString);
+								_JSONString = (String)msg.obj;
+								JSONObject resultJSON = new JSONObject(_JSONString);
 								// Set data
 								/*
 								 * JSON Array is Movies. object 0 is the first
@@ -203,84 +192,69 @@ public class MainActivity extends Activity {
 											Toast.LENGTH_LONG);
 									toast.show();
 									_header.setText("Try Again");
-									// Close Progress Bar
+									//Close Progress Bar
 									_pDialog.dismiss();
 								} else {
-
-									// Loop through a JSON Array and get Movie
-									// Names
-									ArrayList<HashMap<String, String>> movieList = new ArrayList<HashMap<String, String>>();
-									JSONArray movies = resultJSON
-											.getJSONArray("movies");
+									
+								    
+									//Loop through a JSON Array and get Movie Names
+									ArrayList<HashMap<String, String>> movieList = new ArrayList<HashMap<String,String>>();
+									JSONArray movies = resultJSON.getJSONArray("movies");
 									int movieSize = movies.length();
 									for (int i = 0; i < movieSize; i++) {
-										JSONObject movieDetails = movies
-												.getJSONObject(i);
-										String title = movieDetails
-												.getString(getString(
-														R.string.titleAPI)
-														.toString());
-
+										JSONObject movieDetails = movies.getJSONObject(i);
+										String title = movieDetails.getString(getString(R.string.titleAPI).toString());
+										
 										HashMap<String, String> displayMap = new HashMap<String, String>();
 										displayMap.put("TITLE", title);
-
+										
 										movieList.add(displayMap);
 									}
-									// Close Progress Bar
+									//Close Progress Bar
 									_pDialog.dismiss();
-									// Load Picker Activity
-									Intent nextActivity = new Intent(_context,
-											MoviePickerActivity.class);
-									nextActivity.putExtra(
-											"HEADER",
-											"We found "
-													+ String.valueOf(movieSize)
-													+ " movies by that name. Select the one you wanted below.");
+									//Load Picker Activity
+									Intent nextActivity = new Intent(_context, MoviePickerActivity.class);
+									nextActivity.putExtra("HEADER", "We found " + String.valueOf(movieSize) + " movies by that name. Select the one you wanted below.");
 									nextActivity.putExtra("MOVIES", movieList);
 									startActivityForResult(nextActivity, 0);
-
+									
 								}
 							} catch (Exception e) {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
 								e.printStackTrace();
 								_header.setText("No info found. Please double check that the movie title was entered correctly");
-								// Close Progress Bar
+								//Close Progress Bar
 								_pDialog.dismiss();
 							}
 						}
 					}
-
+					
 				};
-				// HTTP Service Messenger
+				//HTTP Service Messenger
 				Messenger webMessenger = new Messenger(webHandler);
-				// HTTP Service Intent
-				Intent getWebIntent = new Intent(_context,
-						WebServiceManager.class);
-				getWebIntent.putExtra(WebServiceManager.MESSENGER_KEY,
-						webMessenger);
-				getWebIntent.putExtra(WebServiceManager.MOVIE_KEY, _searchField
-						.getText().toString());
-				// Start service
+				//HTTP Service Intent
+				Intent getWebIntent = new Intent(_context, WebServiceManager.class);
+				getWebIntent.putExtra(WebServiceManager.MESSENGER_KEY, webMessenger);
+				getWebIntent.putExtra(WebServiceManager.MOVIE_KEY, _searchField.getText().toString());
+				//Start service
 				startService(getWebIntent);
 				// Close keyboard
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				inputManager.hideSoftInputFromWindow(getCurrentFocus()
 						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
+				
 			}
-
+			
 		});
-
-		// More Info Link handler
-		_infoTV.setPaintFlags(_infoTV.getPaintFlags()
-				| Paint.UNDERLINE_TEXT_FLAG);
+		
+		//More Info Link handler
+		_infoTV.setPaintFlags(_infoTV.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 		_infoTV.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent infoIntent = new Intent(Intent.ACTION_VIEW, Uri
-						.parse(_infoTV.getText().toString()));
+				Intent infoIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(_infoTV.getText().toString()));
 				startActivity(infoIntent);
-
+				
 			}
 		});
 	};
@@ -313,16 +287,13 @@ public class MainActivity extends Activity {
 	protected void onSaveInstanceState(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putString("SEARCH_FIELD", _searchField.getText()
-				.toString());
+		savedInstanceState.putString("SEARCH_FIELD", _searchField.getText().toString());
 		savedInstanceState.putString("HEADER", _header.getText().toString());
 		savedInstanceState.putString("TITLE", _titleTV.getText().toString());
 		savedInstanceState.putString("YEAR", _yearTV.getText().toString());
 		savedInstanceState.putString("MPAA", _mpaaTV.getText().toString());
-		savedInstanceState
-				.putString("RUNTIME", _runtimeTV.getText().toString());
-		savedInstanceState
-				.putString("CRITICS", _criticsTV.getText().toString());
+		savedInstanceState.putString("RUNTIME", _runtimeTV.getText().toString());
+		savedInstanceState.putString("CRITICS", _criticsTV.getText().toString());
 		savedInstanceState.putString("LINK", _link);
 		savedInstanceState.putString("INFO", _infoTV.getText().toString());
 		savedInstanceState.putString("JSON", _JSONString);
@@ -334,26 +305,20 @@ public class MainActivity extends Activity {
 		if (resultCode == RESULT_OK && requestCode == 0) {
 			Bundle results = data.getExtras();
 			if (results != null) {
-				// Trim JSON to just needed part
+				//Trim JSON to just needed part
 				int movieNumber = results.getInt("MOVIE_NUMBER");
 				try {
-					JSONObject storedJSON = new JSONObject(_JSONString)
-							.getJSONArray("movies").getJSONObject(movieNumber);
+					JSONObject storedJSON = new JSONObject(_JSONString).getJSONArray("movies")
+							.getJSONObject(movieNumber);
 					// Store object in external memory
 					FileStorageManager.getFileStuffInstance();
-					FileStorageManager.storeStringFile(_context, "Movie",
-							storedJSON.toString(), true);
-					// Pull data back from content provider (movie provider)
-					Cursor cursor = getContentResolver().query(
-							MovieProvider.MovieData.CONTENT_URI, null, null,
-							null, null);
+					FileStorageManager.storeStringFile(_context, "Movie", storedJSON.toString(), true);
+					//Pull data back from content provider (movie provider)
+					Cursor cursor = getContentResolver().query(MovieProvider.MovieData.CONTENT_URI, null, null, null, null);
 					cursor.moveToFirst();
 					String temp = new String(cursor.getString(2));
 					Log.i("Cursor", temp);
-					displayResults("Movie Found!", cursor.getString(1),
-							cursor.getString(2), cursor.getString(3),
-							cursor.getString(4), cursor.getString(5),
-							cursor.getString(6), cursor.getString(7));
+					displayResults("Movie Found!", cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -361,28 +326,25 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
-
-	// Display results
-	public void displayResults(String header, String title, String year,
-			String mpaa, String runtime, String critics, String poster,
-			String info) {
+	//Display results
+	public void displayResults(String header, String title, String year, String mpaa, String runtime, String critics, String poster, String info) {
 		// Set Text Values
 		_searchField.setText(title);
 		_header.setText(header);
-		// Title
+		//Title
 		_titleTV.setText(title);
 		// Year
 		_yearTV.setText(year);
 		// Rating
 		_mpaaTV.setText(mpaa);
 		// Runtime
-		_runtimeTV.setText(runtime + " minutes");
+		_runtimeTV.setText(runtime+" minutes");
 		// Critics
 		_criticsTV.setText(critics);
-		// Poster
+		//Poster
 		_link = new String(poster);
 		_iView.setImageUrl(_link);
-		// Info
+		//Info
 		_infoTV.setText(info);
 	};
 }

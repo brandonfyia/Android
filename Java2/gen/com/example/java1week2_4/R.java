@@ -68,6 +68,7 @@ public final class R {
         public static final int default_text=0x7f070007;
         public static final int error=0x7f070006;
         public static final int go=0x7f070003;
+        public static final int header_default=0x7f070017;
         public static final int hint=0x7f070002;
         public static final int info=0x7f07000f;
         public static final int infoAPI=0x7f070016;
