@@ -32,7 +32,7 @@ public class MoviePickerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		// Set Content View
-		setContentView(R.layout.picker);
+		setContentView(R.layout.movie_picker);
 		
 		//Set defaults for variables
 		_context = this;

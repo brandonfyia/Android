@@ -1,2 +1,6 @@
 1372298347342	Extracts string 'Search For A Movie' into R.string.header_default
 1372298850430	Rename type 'MainActivity'
+1372299347272	Rename resource 'main.xml'
+1372299364366	Rename resource 'movie_search'
+1372299381293	Rename resource 'picker.xml'
+1372308254428	Rename field 'fragment'
