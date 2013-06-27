@@ -105,8 +105,7 @@ public class MainActivity extends Activity {
 			_mpaaTV.setText(savedInstanceState.getString("MPAA"));
 			_runtimeTV.setText(savedInstanceState.getString("RUNTIME"));
 			_criticsTV.setText(savedInstanceState.getString("CRITICS"));
-			_link = savedInstanceState.getString("LINK");
-			_iView.setImageUrl(_link);
+			_iView.setImageUrl(savedInstanceState.getString("LINK"));
 			_infoTV.setText(savedInstanceState.getString("INFO"));
 			_JSONString = savedInstanceState.getString("JSON");
 		}
