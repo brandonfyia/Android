@@ -7317,3 +7317,345 @@ org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
 !SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 01:06:45.768
 !MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:47:00.625
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests(JavaBreakpoint.java:626)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget(JavaBreakpoint.java:584)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.addToTarget(JavaLineBreakpoint.java:178)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointAdded(JDIDebugTarget.java:1287)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.run(BreakpointManager.java:992)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.notify(BreakpointManager.java:1018)
+	at org.eclipse.debug.internal.core.BreakpointManager.fireUpdate(BreakpointManager.java:932)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:610)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:581)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoint(BreakpointManager.java:574)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.register(JavaBreakpoint.java:205)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint$1.run(JavaWatchpoint.java:129)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.debug.core.model.Breakpoint.run(Breakpoint.java:341)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.<init>(JavaWatchpoint.java:132)
+	at org.eclipse.jdt.debug.core.JDIDebugModel.createWatchpoint(JDIDebugModel.java:639)
+	at org.eclipse.jdt.internal.debug.ui.actions.ToggleBreakpointAdapter$5.run(ToggleBreakpointAdapter.java:905)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:47:00.625
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:47:04.533
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests(JavaBreakpoint.java:626)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget(JavaBreakpoint.java:584)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.addToTarget(JavaLineBreakpoint.java:178)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointAdded(JDIDebugTarget.java:1287)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.run(BreakpointManager.java:992)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.notify(BreakpointManager.java:1018)
+	at org.eclipse.debug.internal.core.BreakpointManager.fireUpdate(BreakpointManager.java:932)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:610)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:581)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoint(BreakpointManager.java:574)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.register(JavaBreakpoint.java:205)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint$1.run(JavaWatchpoint.java:129)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.debug.core.model.Breakpoint.run(Breakpoint.java:341)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.<init>(JavaWatchpoint.java:132)
+	at org.eclipse.jdt.debug.core.JDIDebugModel.createWatchpoint(JDIDebugModel.java:639)
+	at org.eclipse.jdt.internal.debug.ui.actions.ToggleBreakpointAdapter$5.run(ToggleBreakpointAdapter.java:905)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:47:04.533
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:47:08.852
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests(JavaBreakpoint.java:626)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget(JavaBreakpoint.java:584)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.addToTarget(JavaLineBreakpoint.java:178)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointAdded(JDIDebugTarget.java:1287)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.run(BreakpointManager.java:992)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.notify(BreakpointManager.java:1018)
+	at org.eclipse.debug.internal.core.BreakpointManager.fireUpdate(BreakpointManager.java:932)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:610)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:581)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoint(BreakpointManager.java:574)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.register(JavaBreakpoint.java:205)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint$1.run(JavaWatchpoint.java:129)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.debug.core.model.Breakpoint.run(Breakpoint.java:341)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.<init>(JavaWatchpoint.java:132)
+	at org.eclipse.jdt.debug.core.JDIDebugModel.createWatchpoint(JDIDebugModel.java:639)
+	at org.eclipse.jdt.internal.debug.ui.actions.ToggleBreakpointAdapter$5.run(ToggleBreakpointAdapter.java:905)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:47:08.852
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:54:09.709
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests(JavaBreakpoint.java:626)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget(JavaBreakpoint.java:584)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.addToTarget(JavaLineBreakpoint.java:178)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointAdded(JDIDebugTarget.java:1287)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.run(BreakpointManager.java:992)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointNotifier.notify(BreakpointManager.java:1018)
+	at org.eclipse.debug.internal.core.BreakpointManager.fireUpdate(BreakpointManager.java:932)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:610)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoints(BreakpointManager.java:581)
+	at org.eclipse.debug.internal.core.BreakpointManager.addBreakpoint(BreakpointManager.java:574)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.register(JavaBreakpoint.java:205)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint$1.run(JavaWatchpoint.java:129)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.debug.core.model.Breakpoint.run(Breakpoint.java:341)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.<init>(JavaWatchpoint.java:132)
+	at org.eclipse.jdt.debug.core.JDIDebugModel.createWatchpoint(JDIDebugModel.java:639)
+	at org.eclipse.jdt.internal.debug.ui.actions.ToggleBreakpointAdapter$5.run(ToggleBreakpointAdapter.java:905)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:54:09.709
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:57:21.001
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests(JavaBreakpoint.java:626)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget(JavaBreakpoint.java:584)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.addToTarget(JavaLineBreakpoint.java:178)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointManagerEnablementChanged(JDIDebugTarget.java:2512)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointManagerNotifier.run(BreakpointManager.java:1157)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointManagerNotifier.notify(BreakpointManager.java:1170)
+	at org.eclipse.debug.internal.core.BreakpointManager.setEnabled(BreakpointManager.java:1118)
+	at org.eclipse.debug.internal.ui.actions.breakpoints.SkipAllBreakpointsAction$1.run(SkipAllBreakpointsAction.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:57:21.001
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:58:58.679
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:58:58.679
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 18:59:49.207
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 18:59:49.207
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:00:02.938
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:00:02.938
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:14:32.735
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:14:32.735
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:15:16.039
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:15:16.039
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:16:09.127
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:16:09.127
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:17:00.552
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:17:00.552
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:22:18.103
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests(JavaBreakpoint.java:626)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget(JavaBreakpoint.java:584)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.addToTarget(JavaLineBreakpoint.java:178)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointManagerEnablementChanged(JDIDebugTarget.java:2512)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointManagerNotifier.run(BreakpointManager.java:1157)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.BreakpointManager$BreakpointManagerNotifier.notify(BreakpointManager.java:1170)
+	at org.eclipse.debug.internal.core.BreakpointManager.setEnabled(BreakpointManager.java:1118)
+	at org.eclipse.debug.internal.ui.actions.breakpoints.SkipAllBreakpointsAction$1.run(SkipAllBreakpointsAction.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:22:18.103
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:22:28.864
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:22:28.865
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:26:09.268
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:26:09.268
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:27:58.840
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:27:58.841
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:30:03.327
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:30:03.327
+!MESSAGE VM does not support access watchpoints.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-06-27 19:30:59.904
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-06-27 19:30:59.905
+!MESSAGE VM does not support access watchpoints.

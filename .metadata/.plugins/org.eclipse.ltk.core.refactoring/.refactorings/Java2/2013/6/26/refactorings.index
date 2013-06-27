@@ -4,3 +4,10 @@
 1372299364366	Rename resource 'movie_search'
 1372299381293	Rename resource 'picker.xml'
 1372308254428	Rename field 'fragment'
+1372313099159	Rename type 'MovieSearchFragment'
+1372313482584	Copy file
+1372313497847	Copy file
+1372314000325	Copy file
+1372314080724	Delete element
+1372314089584	Delete element
+1372371879502	Rename method 'clearFields'

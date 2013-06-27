@@ -29,9 +29,12 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0011;
+        public static final int action_settings=0x7f0a0014;
         public static final int criticsTV=0x7f0a000e;
-        public static final int fragmentMovieSearch=0x7f0a0010;
+        public static final int fragmentMovieInfo=0x7f0a0012;
+        public static final int fragmentMoviePoster=0x7f0a0011;
+        public static final int fragmentMovieSearch=0x7f0a0013;
+        public static final int fragmentSearchPoster=0x7f0a0010;
         public static final int gridLayout=0x7f0a0008;
         public static final int header=0x7f0a0004;
         public static final int headerTV=0x7f0a0002;

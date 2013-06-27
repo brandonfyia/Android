@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
-import android.text.method.MovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.inputmethod.InputMethodManager;
@@ -40,17 +39,19 @@ import com.example.lib.WebManager;
 /**
  * The Class MainActivity.
  */
-@SuppressLint({ "NewApi", "InlinedApi", "HandlerLeak" })
-public class MovieSearch extends Activity implements MovieSearchFragment.onGOClicked {
+
+public class MovieSearch extends Activity implements
+		MovieSearchFragment.onGOClicked {
 
 	// Global variables
 	Context _context;
 	Boolean _connected = false;
 	JSONObject _json;
-	MovieSearchFragment _MSfragment;
-	
+	MovieInfoFragment _infoFragment;
+	MovieSearchFragment _searchFragment;
+	MoviePosterFragment _posterFragment;
+
 	String _JSONString;
-	
 
 	/*
 	 * (non-Javadoc)
@@ -66,18 +67,22 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 
 		// Set defaults for variables
 		_context = this;
-
-		_MSfragment = (MovieSearchFragment) getFragmentManager().findFragmentById(R.id.fragmentMovieSearch);
+		_searchFragment = (MovieSearchFragment) getFragmentManager()
+				.findFragmentById(R.id.fragmentMovieSearch);
+		_infoFragment = (MovieInfoFragment) getFragmentManager()
+				.findFragmentById(R.id.fragmentMovieInfo);
+		_posterFragment = (MoviePosterFragment) getFragmentManager()
+				.findFragmentById(R.id.fragmentMoviePoster);
 
 		// Check for previously saved state
 		if (savedInstanceState != null) {
 			// Restore old Values
 			_JSONString = savedInstanceState.getString("JSON");
-			/* displayResults(String header, String title, String year,
-			 * String mpaa, String runtime, String critics, String poster,
-			 * String info)
-			*/
-			
+			/*
+			 * displayResults(String header, String title, String year, String
+			 * mpaa, String runtime, String critics, String poster, String info)
+			 */
+
 		}
 
 		// Detect Network connection
@@ -95,11 +100,12 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 				try {
 					_json = new JSONObject(stored);
 					Log.i("SAVED JSON", _json.toString());
-					/* displayResults(String header, String title, String year,
-					 * String mpaa, String runtime, String critics, String poster,
-					 * String info)
-					*/
-					_MSfragment.displayResults(
+					/*
+					 * displayResults(String header, String title, String year,
+					 * String mpaa, String runtime, String critics, String
+					 * poster, String info)
+					 */
+					_infoFragment.displayResults(
 							"No connection. Viewing last searched movie.",
 							_json.getString(getString(R.string.titleAPI))
 									.toString(),
@@ -155,7 +161,7 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 		// TODO Auto-generated method stub
 		super.onSaveInstanceState(savedInstanceState);
 		savedInstanceState.putString("JSON", _JSONString);
-		
+
 	}
 
 	@Override
@@ -180,14 +186,16 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 					cursor.moveToFirst();
 					String temp = new String(cursor.getString(2));
 					Log.i("Cursor", temp);
-					/* displayResults(String header, String title, String year,
-					 * String mpaa, String runtime, String critics, String poster,
-					 * String info)
-					*/
-					_MSfragment.displayResults("Movie Found!", cursor.getString(1),
-							cursor.getString(2), cursor.getString(3),
-							cursor.getString(4), cursor.getString(5),
-							cursor.getString(6), cursor.getString(7));
+					/*
+					 * displayResults(String header, String title, String year,
+					 * String mpaa, String runtime, String critics, String
+					 * poster, String info)
+					 */
+					_infoFragment.displayResults("Movie Found!",
+							cursor.getString(1), cursor.getString(2),
+							cursor.getString(3), cursor.getString(4),
+							cursor.getString(5), cursor.getString(6),
+							cursor.getString(7));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -195,33 +203,34 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 			}
 		}
 	}
-	
-	//Web Stuff
-	public void webHandler(String movie){
+
+	// Web Stuff
+	@SuppressLint("HandlerLeak")
+	public void webHandler(String movie) {
 		// HTTP Service Handler
 		Handler webHandler = new Handler() {
+
 			@Override
 			public void handleMessage(Message msg) {
 				if (msg.arg1 == RESULT_OK && msg.obj != null) {
 					try {
 						_JSONString = (String) msg.obj;
-						JSONObject resultJSON = new JSONObject(
-								_JSONString);
+						JSONObject resultJSON = new JSONObject(_JSONString);
 						// Set data
 						/*
-						 * JSON Array is Movies. object 0 is the first
-						 * result. get string provides the detail
-						 * Object.
+						 * JSON Array is Movies. object 0 is the first result.
+						 * get string provides the detail Object.
 						 */
 						if (resultJSON.getString("total").toString()
 								.compareTo("0") == 0) {
 							Toast toast = Toast.makeText(_context,
 									"No movie by that name exists",
 									Toast.LENGTH_LONG);
-							toast.show();
-//							_header.setText("Try Again");
+							toast.show();	
+							
+							_infoFragment.displayResults("Try Again", null, null, null, null, null, null, null);
 							// Close Progress Bar
-							_MSfragment.closeProgressBar();
+							_searchFragment.closeProgressBar();
 						} else {
 
 							// Loop through a JSON Array and get Movie
@@ -234,8 +243,7 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 								JSONObject movieDetails = movies
 										.getJSONObject(i);
 								String title = movieDetails
-										.getString(getString(
-												R.string.titleAPI)
+										.getString(getString(R.string.titleAPI)
 												.toString());
 
 								HashMap<String, String> displayMap = new HashMap<String, String>();
@@ -244,15 +252,18 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 								movieList.add(displayMap);
 							}
 							// Close Progress Bar
-							_MSfragment.closeProgressBar();
+							
+							//_searchFragment.closeProgressBar();
+							
 							// Load Picker Activity
 							Intent nextActivity = new Intent(_context,
 									MoviePickerActivity.class);
-							nextActivity.putExtra(
-									"HEADER",
-									"We found "
-											+ String.valueOf(movieSize)
-											+ " movies by that name. Select the one you wanted below.");
+							nextActivity
+									.putExtra(
+											"HEADER",
+											"We found "
+													+ String.valueOf(movieSize)
+													+ " movies by that name. Select the one you wanted below.");
 							nextActivity.putExtra("MOVIES", movieList);
 							startActivityForResult(nextActivity, 0);
 
@@ -260,10 +271,10 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 					} catch (Exception e) {
 						Log.e("HTTP HANDLER", e.getMessage().toString());
 						e.printStackTrace();
-//						_header.setText("No info found. Please double check that the movie title was entered correctly");
+						_infoFragment.displayResults("No info found. Please double check that the movie title was entered correctly", null, null, null, null, null, null, null);
 						// Close Progress Bar
-						_MSfragment.closeProgressBar();
-						
+						_searchFragment.closeProgressBar();
+
 					}
 				}
 			}
@@ -272,17 +283,16 @@ public class MovieSearch extends Activity implements MovieSearchFragment.onGOCli
 		// HTTP Service Messenger
 		Messenger webMessenger = new Messenger(webHandler);
 		// HTTP Service Intent
-		Intent getWebIntent = new Intent(_context,
-				WebServiceManager.class);
-		getWebIntent.putExtra(WebServiceManager.MESSENGER_KEY,
-				webMessenger);
+		Intent getWebIntent = new Intent(_context, WebServiceManager.class);
+		getWebIntent.putExtra(WebServiceManager.MESSENGER_KEY, webMessenger);
 		getWebIntent.putExtra(WebServiceManager.MOVIE_KEY, movie);
 		// Start service
 		startService(getWebIntent);
 		// Close keyboard
 		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(getCurrentFocus()
-				.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-		
+		inputManager.hideSoftInputFromWindow(
+				getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+
 	}
 }
