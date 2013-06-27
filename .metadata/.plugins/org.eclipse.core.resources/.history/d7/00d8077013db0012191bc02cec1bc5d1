@@ -253,8 +253,6 @@ public class MainActivity extends Activity {
 								Log.e("HTTP HANDLER", e.getMessage().toString());
 								e.printStackTrace();
 								_header.setText("No info found. Please double check that the movie title was entered correctly");
-								//Close Progress Bar
-								_pDialog.dismiss();
 							}
 						}
 					}
