@@ -98,16 +98,17 @@ public class MainActivity extends Activity {
 			_header.setText("Search For A Movie");
 		} else {
 			//Restore old Values
+			_searchField.setText(savedInstanceState.getString("SEARCH_FIELD"));
+			_header.setText(savedInstanceState.getString("HEADER"));
+			_titleTV.setText(savedInstanceState.getString("TITLE"));
+			_yearTV.setText(savedInstanceState.getString("YEAR"));
+			_mpaaTV.setText(savedInstanceState.getString("MPAA"));
+			_runtimeTV.setText(savedInstanceState.getString("RUNTIME"));
+			_criticsTV.setText(savedInstanceState.getString("CRITICS"));
+			_link = savedInstanceState.getString("LINK");
+			_iView.setImageUrl(_link);
+			_infoTV.setText(savedInstanceState.getString("INFO"));
 			_JSONString = savedInstanceState.getString("JSON");
-			displayResults(savedInstanceState.getString("HEADER"),
-					savedInstanceState.getString("TITLE"),
-					savedInstanceState.getString("YEAR"),
-					savedInstanceState.getString("MPAA"),
-					savedInstanceState.getString("RUNTIME"),
-					savedInstanceState.getString("CRITICS"),
-					savedInstanceState.getString("LINK"),
-					savedInstanceState.getString("INFO")
-			);
 		}
 		
 		// Detect Network connection
@@ -117,6 +118,10 @@ public class MainActivity extends Activity {
 		} else {
 			// If no connection, load last viewed movie details
 
+			// Warning Display
+			_header.setText("No connection. Viewing last searched movie.");
+
+			
 			// Load last JSON file
 			FileStorageManager.getFileStuffInstance();
 			String stored = (String) FileStorageManager.readStringFile(_context, "Movie", true);
@@ -124,15 +129,41 @@ public class MainActivity extends Activity {
 				try {
 					_json = new JSONObject(stored);
 					Log.i("SAVED JSON", _json.toString());
-					displayResults("No connection. Viewing last searched movie.",
-							_json.getString(getString(R.string.titleAPI)).toString(), 
-							_json.getString(getString(R.string.yearAPI)).toString(), 
-							_json.getString(getString(R.string.mpaa_ratingAPI)).toString(), 
-							_json.getString(getString(R.string.runtimeAPI)).toString(), 
-							_json.getString(getString(R.string.critics_consensusAPI)).toString(), 
-							_json.getJSONObject("posters").getString(getString(R.string.thumbnailAPI).toString()), 
-							_json.getJSONObject("links").getString(getString(R.string.infoAPI).toString())
-					);
+					// Set Text Values
+					_searchField.setText(_json.getString(
+							"title").toString());
+					//Title
+					_titleTV.setText(_json.getString(
+							getString(R.string.titleAPI))
+							.toString());
+					// Year
+					_yearTV.setText(_json.getString(
+							getString(R.string.yearAPI))
+							.toString());
+					// Rating
+					_mpaaTV.setText(_json.getString(
+							getString(R.string.mpaa_ratingAPI))
+							.toString());
+					// Runtime
+					_runtimeTV.setText(_json.getString(
+							getString(R.string.runtimeAPI))
+							.toString()+" minutes");
+					// Critics
+					_criticsTV.setText(_json.getString(
+							getString(R.string.critics_consensusAPI))
+							.toString());
+					//Poster
+					_link = new String(_json.getJSONObject(
+							"posters").getString(
+							getString(R.string.thumbnailAPI)
+									.toString()));
+					_iView.setImageUrl(_link);
+					//Info
+					_link = new String(_json.getJSONObject(
+							"links").getString(
+							getString(R.string.infoAPI)
+									.toString()));
+					_iView.setImageUrl(_link);
 
 				} catch (JSONException e) {
 					Log.e("SAVED FILE", "CANT MAKE JSON");
@@ -318,7 +349,24 @@ public class MainActivity extends Activity {
 					cursor.moveToFirst();
 					String temp = new String(cursor.getString(2));
 					Log.i("Cursor", temp);
-					displayResults("Movie Found!", cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+					// Set Text Values
+					_searchField.setText(cursor.getString(1));
+					_header.setText("Movie Found!");
+					//Title
+					_titleTV.setText(cursor.getString(1));
+					// Year
+					_yearTV.setText(cursor.getString(2));
+					// Rating
+					_mpaaTV.setText(cursor.getString(3));
+					// Runtime
+					_runtimeTV.setText(cursor.getString(4)+" minutes");
+					// Critics
+					_criticsTV.setText(cursor.getString(5));
+					//Poster
+					_link = new String(cursor.getString(6));
+					_iView.setImageUrl(_link);
+					//Info
+					_infoTV.setText(cursor.getString(7));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -326,25 +374,4 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
-	//Display results
-	public void displayResults(String header, String title, String year, String mpaa, String runtime, String critics, String poster, String info) {
-		// Set Text Values
-		_searchField.setText(title);
-		_header.setText(header);
-		//Title
-		_titleTV.setText(title);
-		// Year
-		_yearTV.setText(year);
-		// Rating
-		_mpaaTV.setText(mpaa);
-		// Runtime
-		_runtimeTV.setText(runtime+" minutes");
-		// Critics
-		_criticsTV.setText(critics);
-		//Poster
-		_link = new String(poster);
-		_iView.setImageUrl(_link);
-		//Info
-		_infoTV.setText(info);
-	};
 }
