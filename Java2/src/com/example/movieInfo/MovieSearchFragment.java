@@ -46,7 +46,7 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.movie_search, container);
+		View view = inflater.inflate(R.layout.movie_search_search, container);
 
 		_context = getActivity();
 		_header = (TextView) view.findViewById(R.id.header);

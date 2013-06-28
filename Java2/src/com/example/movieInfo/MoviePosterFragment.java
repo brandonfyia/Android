@@ -26,7 +26,7 @@ public class MoviePosterFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.movie_search, container);
+		View view = inflater.inflate(R.layout.movie_search_poster, container);
 
 		return view;
 	}
@@ -58,11 +58,9 @@ public class MoviePosterFragment extends Fragment {
 	// Clear Poster
 	public void clearPoster() {
 		setDefaults();
-		WebImageCache cache = new WebImageCache(getActivity());
-		cache.clear();
 		_link = null;
-		_iView.setImageUrl(_link);
-		_iView.refreshDrawableState();
+		_iView.setImageDrawable(null);
+		
 	}
 
 	@Override

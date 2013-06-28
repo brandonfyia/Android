@@ -37,7 +37,7 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.movie_search, container);
+		View view = inflater.inflate(R.layout.movie_search_info, container);
 
 		return view;
 	}

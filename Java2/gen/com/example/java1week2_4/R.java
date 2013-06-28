@@ -30,25 +30,25 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f0a0013;
-        public static final int criticsTV=0x7f0a000e;
-        public static final int fragmentMovieInfo=0x7f0a0012;
-        public static final int fragmentMoviePoster=0x7f0a0011;
-        public static final int fragmentMovieSearch=0x7f0a0010;
+        public static final int criticsTV=0x7f0a000d;
+        public static final int fragmentMovieInfo=0x7f0a0007;
+        public static final int fragmentMoviePoster=0x7f0a0006;
+        public static final int fragmentMovieSearch=0x7f0a0004;
         public static final int gridLayout=0x7f0a0008;
-        public static final int header=0x7f0a0004;
+        public static final int header=0x7f0a0010;
         public static final int headerTV=0x7f0a0002;
-        public static final int infoTV=0x7f0a000f;
+        public static final int infoTV=0x7f0a000e;
         public static final int listTV=0x7f0a0000;
         public static final int mainLayout=0x7f0a0001;
-        public static final int mpaaTV=0x7f0a000c;
+        public static final int mpaaTV=0x7f0a000b;
         public static final int pickerList=0x7f0a0003;
-        public static final int posterIV=0x7f0a0009;
-        public static final int runtimeTV=0x7f0a000d;
-        public static final int scrollView1=0x7f0a0007;
-        public static final int searchButton=0x7f0a0006;
-        public static final int searchField=0x7f0a0005;
-        public static final int titleTV=0x7f0a000a;
-        public static final int yearTV=0x7f0a000b;
+        public static final int posterIV=0x7f0a000f;
+        public static final int runtimeTV=0x7f0a000c;
+        public static final int scrollView1=0x7f0a0005;
+        public static final int searchButton=0x7f0a0012;
+        public static final int searchField=0x7f0a0011;
+        public static final int titleTV=0x7f0a0009;
+        public static final int yearTV=0x7f0a000a;
     }
     public static final class integer {
         public static final int five=0x7f060001;
@@ -57,8 +57,10 @@ public final class R {
     public static final class layout {
         public static final int list_row=0x7f030000;
         public static final int movie_picker=0x7f030001;
-        public static final int movie_search=0x7f030002;
-        public static final int movie_search_main=0x7f030003;
+        public static final int movie_search_fragments=0x7f030002;
+        public static final int movie_search_info=0x7f030003;
+        public static final int movie_search_poster=0x7f030004;
+        public static final int movie_search_search=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f090000;
