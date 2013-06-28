@@ -51,17 +51,21 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_context = getActivity();
 		_header = (TextView) view.findViewById(R.id.header);
 		_searchField = (EditText) view.findViewById(R.id.searchField);
-		
 
 		Button searchButton = (Button) view.findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(this);
+
+		//Check for saved instance
+		if (savedInstanceState != null) {
+			displaySearchAndHeader(savedInstanceState.getString("HEADER"), "");
+		}
 
 		return view;
 	}
 
 	@Override
 	public void onClick(View v) { 
-		
+
 		Log.i("CLICK HANDLER", _searchField.getText().toString());
 
 		// Progress bar
@@ -82,14 +86,18 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 
 	// Set Search and Header
 	public void displaySearchAndHeader(String header, String search) {
+		//_header = (TextView) getActivity().findViewById(R.id.header);
+		//_searchField = (EditText) getActivity().findViewById(R.id.searchField);
 		_searchField.setText(search);
 		_header.setText(header);
 	};
-	
 
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putString("HEADER", _header.getText().toString());
-	}
+
+//	@Override
+//	public void onSaveInstanceState(Bundle savedInstanceState) {
+//		super.onSaveInstanceState(savedInstanceState);
+//		_header = (TextView) getActivity().findViewById(R.id.header);
+//		
+//		savedInstanceState.putString("HEADER", _header.getText().toString());
+//	}
 }

@@ -28,23 +28,35 @@ public class MoviePosterFragment extends Fragment {
 
 		_iView = (SmartImageView) view.findViewById(R.id.posterIV);
 
+		_iView.setImageUrl("http://content8.flixster.com/movie/26/69/266994_mob.jpg");
+
+		//Check for saved instance
+		if (savedInstanceState != null) {
+			displayPoster(savedInstanceState.getString("LINK"));
+		}
+
 		return view;
 	}
 
 	public void displayPoster(String link) {
+		//_iView = (SmartImageView) getActivity().findViewById(R.id.posterIV);
 		// Poster
-		_link = new String(link);
-		_iView.setImageUrl(_link);
+		_link = link;
+		if (link != null) {
+			_iView.setImageUrl(_link);
+		}
+		
 	}
 
 	// Clear Poster
 	public void clearPoster() {
+		_iView = (SmartImageView) getActivity().findViewById(R.id.posterIV);
 		_iView.setImageUrl(null);
 	}
-	
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-	}
+
+//	@Override
+//	public void onSaveInstanceState(Bundle savedInstanceState) {
+//		super.onSaveInstanceState(savedInstanceState);
+//		savedInstanceState.putString("LINK", _link);
+//	}
 }
