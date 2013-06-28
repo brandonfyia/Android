@@ -52,11 +52,14 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_header = (TextView) view.findViewById(R.id.header);
 		_searchField = (EditText) view.findViewById(R.id.searchField);
 
+
 		Button searchButton = (Button) view.findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(this);
 
 		//Check for saved instance
 		if (savedInstanceState != null) {
+			Log.i("MovieSearchFragment - onCreateView", "" + savedInstanceState.getString("HEADER"));
+
 			displaySearchAndHeader(savedInstanceState.getString("HEADER"), "");
 		}
 
@@ -65,6 +68,7 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) { 
+		_searchField = (EditText) getActivity().findViewById(R.id.searchField);
 
 		Log.i("CLICK HANDLER", _searchField.getText().toString());
 
@@ -86,18 +90,27 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 
 	// Set Search and Header
 	public void displaySearchAndHeader(String header, String search) {
-		//_header = (TextView) getActivity().findViewById(R.id.header);
-		//_searchField = (EditText) getActivity().findViewById(R.id.searchField);
+		//setDefaults();
+		Log.i("MovieSearchFragment - displaySearchAndHeader", header + " " + search);
 		_searchField.setText(search);
 		_header.setText(header);
 	};
 
 
-//	@Override
-//	public void onSaveInstanceState(Bundle savedInstanceState) {
-//		super.onSaveInstanceState(savedInstanceState);
-//		_header = (TextView) getActivity().findViewById(R.id.header);
-//		
-//		savedInstanceState.putString("HEADER", _header.getText().toString());
-//	}
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		super.onSaveInstanceState(savedInstanceState);
+
+		Log.i("MovieSearchFragment - onSaveInstanceState", "" + _header.getText().toString());
+
+		setDefaults();
+		savedInstanceState.putString("HEADER", _header.getText().toString());
+
+	}
+
+	//Set Defaults
+	public void setDefaults(){
+		_header = (TextView) getActivity().findViewById(R.id.header);
+		_searchField = (EditText) getActivity().findViewById(R.id.searchField);
+	};
 }

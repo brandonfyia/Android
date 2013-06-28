@@ -33,7 +33,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.java1week2_4.R;
-import com.example.java1week2_4.R.layout;
 import com.example.lib.MovieProvider;
 import com.example.lib.WebManager;
 
@@ -167,7 +166,7 @@ public class MovieSearch extends Activity implements
 					String temp = new String(cursor.getString(2));
 					Log.i("Cursor", temp);
 					//Display Results
-//					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
+					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
 					_posterFragment.displayPoster(cursor.getString(6));
 					_infoFragment.displayResults(
 							cursor.getString(1), cursor.getString(2),
