@@ -74,8 +74,11 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_pDialog.setMessage("Fetching data");
 		_pDialog.setIndeterminate(true);
 		_pDialog.setCancelable(false);
-//		_pDialog.show();
+		_pDialog.show();
 
+		// Clear old data
+		_infoFragment.clearInfo();
+		_posterFragment.clearPoster();
 
 		parentActivity.webHandler(_searchField.getText().toString());
 	}
@@ -83,13 +86,13 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 	// Close progress Bar
 	public void closeProgressBar() {
 		_pDialog.dismiss();
-	};
+	}
 
 	// Set Search and Header
 	public void displaySearchAndHeader(String header, String search) {
 		_searchField.setText(search);
 		_header.setText(header);
-	};
+	}
 	
 
 	@Override

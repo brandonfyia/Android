@@ -51,9 +51,6 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_infoTV = (TextView) view.findViewById(R.id.infoTV);
 
 
-		_titleTV.setText("TEST");
-		
-		
 		//Check for saved instance
 		if (savedInstanceState != null) {
 			displayResults(
@@ -78,7 +75,7 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	public void displayResults(String title, String year,
 			String mpaa, String runtime, String critics, String info) {
 		// Title
-		_titleTV.setText(title);
+		_titleTV.setText("TEST");
 		// Year
 		_yearTV.setText(year);
 		// Rating

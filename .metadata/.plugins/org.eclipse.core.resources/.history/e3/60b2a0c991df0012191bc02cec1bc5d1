@@ -76,6 +76,9 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_pDialog.setCancelable(false);
 //		_pDialog.show();
 
+		// Clear old data
+		_infoFragment.clearInfo();
+		_posterFragment.clearPoster();
 
 		parentActivity.webHandler(_searchField.getText().toString());
 	}

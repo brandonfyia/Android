@@ -41,7 +41,7 @@ import com.example.lib.WebManager;
  * The Class MainActivity.
  */
 
-public class MovieSearch extends Activity implements
+public class MovieSearch extends FragmentActivity implements
 		MovieSearchFragment.onGOClicked {
 
 	// Global variables
@@ -186,7 +186,7 @@ public class MovieSearch extends Activity implements
 					Log.i("Cursor", temp);
 					//Display Results
 //					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
-					_posterFragment.displayPoster(cursor.getString(6));
+	//				_posterFragment.displayPoster(cursor.getString(6));
 					_infoFragment.displayResults(
 							cursor.getString(1), cursor.getString(2),
 							cursor.getString(3), cursor.getString(4),
@@ -203,11 +203,6 @@ public class MovieSearch extends Activity implements
 	// Web Stuff
 	@SuppressLint("HandlerLeak")
 	public void webHandler(String movie) {
-		
-		// Clear old data
-				_infoFragment.clearInfo();
-				_posterFragment.clearPoster();
-				
 		// HTTP Service Handler
 		Handler webHandler = new Handler() {
 
@@ -230,7 +225,7 @@ public class MovieSearch extends Activity implements
 							toast.show();	
 							_searchFragment.displaySearchAndHeader("Try Again", null);
 							// Close Progress Bar
-//							_searchFragment.closeProgressBar();
+							_searchFragment.closeProgressBar();
 						} else {
 
 							// Loop through a JSON Array and get Movie
@@ -252,7 +247,7 @@ public class MovieSearch extends Activity implements
 								movieList.add(displayMap);
 							}
 							// Close Progress Bar
-//							_searchFragment.closeProgressBar();
+							_searchFragment.closeProgressBar();
 							
 							// Load Picker Activity
 							Intent nextActivity = new Intent(_context,
@@ -272,7 +267,7 @@ public class MovieSearch extends Activity implements
 						e.printStackTrace();
 						_searchFragment.displaySearchAndHeader("No info found. Please double check that the movie title was entered correctly", null);
 						// Close Progress Bar
-//						_searchFragment.closeProgressBar();
+						_searchFragment.closeProgressBar();
 
 					}
 				}

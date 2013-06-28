@@ -51,17 +51,15 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_infoTV = (TextView) view.findViewById(R.id.infoTV);
 
 
-		_titleTV.setText("TEST");
-		
-		
 		//Check for saved instance
 		if (savedInstanceState != null) {
-			displayResults(
+			displayResults(savedInstanceState.getString("HEADER"),
 					savedInstanceState.getString("TITLE"),
 					savedInstanceState.getString("YEAR"),
 					savedInstanceState.getString("MPAA"),
 					savedInstanceState.getString("RUNTIME"),
 					savedInstanceState.getString("CRITICS"),
+					savedInstanceState.getString("LINK"),
 					savedInstanceState.getString("INFO"));
 		}
 
@@ -89,7 +87,7 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_criticsTV.setText(critics);
 		// Info
 		_infoTV.setText(info);
-	}
+	};
 
 	//Clear text
 	public void clearInfo (){
@@ -100,7 +98,7 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_runtimeTV.setText("");
 		_criticsTV.setText("");
 		_infoTV.setText("");
-	}
+	};
 
 	@Override
 	public void onClick(View v) {

@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.inputmethod.InputMethodManager;
@@ -106,9 +105,8 @@ public class MovieSearch extends Activity implements
 					 * String mpaa, String runtime, String critics, String
 					 * poster, String info)
 					 */
-					_searchFragment.displaySearchAndHeader("No connection. Viewing last searched movie.", _json.getString(getString(R.string.titleAPI)));
-					_posterFragment.displayPoster(_json.getJSONObject("posters").getString(getString(R.string.thumbnailAPI).toString()));
 					_infoFragment.displayResults(
+							"No connection. Viewing last searched movie.",
 							_json.getString(getString(R.string.titleAPI))
 									.toString(),
 							_json.getString(getString(R.string.yearAPI))
@@ -120,6 +118,10 @@ public class MovieSearch extends Activity implements
 							_json.getString(
 									getString(R.string.critics_consensusAPI))
 									.toString(),
+							_json.getJSONObject("posters")
+									.getString(
+											getString(R.string.thumbnailAPI)
+													.toString()),
 							_json.getJSONObject("links").getString(
 									getString(R.string.infoAPI).toString()));
 
@@ -185,7 +187,7 @@ public class MovieSearch extends Activity implements
 					String temp = new String(cursor.getString(2));
 					Log.i("Cursor", temp);
 					//Display Results
-//					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
+					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
 					_posterFragment.displayPoster(cursor.getString(6));
 					_infoFragment.displayResults(
 							cursor.getString(1), cursor.getString(2),
@@ -203,11 +205,6 @@ public class MovieSearch extends Activity implements
 	// Web Stuff
 	@SuppressLint("HandlerLeak")
 	public void webHandler(String movie) {
-		
-		// Clear old data
-				_infoFragment.clearInfo();
-				_posterFragment.clearPoster();
-				
 		// HTTP Service Handler
 		Handler webHandler = new Handler() {
 
@@ -230,7 +227,7 @@ public class MovieSearch extends Activity implements
 							toast.show();	
 							_searchFragment.displaySearchAndHeader("Try Again", null);
 							// Close Progress Bar
-//							_searchFragment.closeProgressBar();
+							_searchFragment.closeProgressBar();
 						} else {
 
 							// Loop through a JSON Array and get Movie
@@ -252,7 +249,8 @@ public class MovieSearch extends Activity implements
 								movieList.add(displayMap);
 							}
 							// Close Progress Bar
-//							_searchFragment.closeProgressBar();
+							
+							//_searchFragment.closeProgressBar();
 							
 							// Load Picker Activity
 							Intent nextActivity = new Intent(_context,
@@ -272,7 +270,7 @@ public class MovieSearch extends Activity implements
 						e.printStackTrace();
 						_searchFragment.displaySearchAndHeader("No info found. Please double check that the movie title was entered correctly", null);
 						// Close Progress Bar
-//						_searchFragment.closeProgressBar();
+						_searchFragment.closeProgressBar();
 
 					}
 				}

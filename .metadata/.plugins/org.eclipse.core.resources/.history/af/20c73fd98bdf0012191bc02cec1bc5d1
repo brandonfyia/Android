@@ -62,6 +62,12 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 	}
 
 	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
 	public void onClick(View v) {
 
 		_infoFragment = (MovieInfoFragment) getFragmentManager().findFragmentById(R.id.fragmentMovieInfo);
@@ -74,8 +80,11 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_pDialog.setMessage("Fetching data");
 		_pDialog.setIndeterminate(true);
 		_pDialog.setCancelable(false);
-//		_pDialog.show();
+		_pDialog.show();
 
+		// Clear old data
+		_infoFragment.clearInfo();
+		_posterFragment.clearPoster();
 
 		parentActivity.webHandler(_searchField.getText().toString());
 	}
@@ -86,15 +95,8 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 	};
 
 	// Set Search and Header
-	public void displaySearchAndHeader(String header, String search) {
+	public void setSearchAndHeader(String header, String search) {
 		_searchField.setText(search);
 		_header.setText(header);
 	};
-	
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-	}
 }

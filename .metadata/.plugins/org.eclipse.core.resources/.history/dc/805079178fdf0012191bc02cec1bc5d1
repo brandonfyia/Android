@@ -35,12 +35,12 @@ public class MoviePosterFragment extends Fragment {
 		// Poster
 		_link = new String(link);
 		_iView.setImageUrl(_link);
-	}
+	};
 
 	// Clear Poster
 	public void clearPoster() {
 		_iView.setImageUrl(null);
-	}
+	};
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {

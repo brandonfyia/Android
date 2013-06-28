@@ -203,11 +203,6 @@ public class MovieSearch extends Activity implements
 	// Web Stuff
 	@SuppressLint("HandlerLeak")
 	public void webHandler(String movie) {
-		
-		// Clear old data
-				_infoFragment.clearInfo();
-				_posterFragment.clearPoster();
-				
 		// HTTP Service Handler
 		Handler webHandler = new Handler() {
 

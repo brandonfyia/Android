@@ -51,17 +51,15 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_infoTV = (TextView) view.findViewById(R.id.infoTV);
 
 
-		_titleTV.setText("TEST");
-		
-		
 		//Check for saved instance
 		if (savedInstanceState != null) {
-			displayResults(
+			displayResults(savedInstanceState.getString("HEADER"),
 					savedInstanceState.getString("TITLE"),
 					savedInstanceState.getString("YEAR"),
 					savedInstanceState.getString("MPAA"),
 					savedInstanceState.getString("RUNTIME"),
 					savedInstanceState.getString("CRITICS"),
+					savedInstanceState.getString("LINK"),
 					savedInstanceState.getString("INFO"));
 		}
 
@@ -75,8 +73,16 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	}
 
 	// Display results
-	public void displayResults(String title, String year,
-			String mpaa, String runtime, String critics, String info) {
+	public void displayResults(String header, String title, String year,
+			String mpaa, String runtime, String critics, String poster,
+			String info) {
+
+		_searchFragment = (MovieSearchFragment) getFragmentManager().findFragmentById(R.id.fragmentMovieSearch);
+		_posterFragment = (MoviePosterFragment) getFragmentManager().findFragmentById(R.id.fragmentMoviePoster);
+
+		//Search and Header
+		_header = header;
+		_searchFragment.setSearchAndHeader(_header, title);
 		// Title
 		_titleTV.setText(title);
 		// Year
@@ -87,9 +93,12 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_runtimeTV.setText(runtime + " minutes");
 		// Critics
 		_criticsTV.setText(critics);
+		//Poster
+		_link = poster;
+		_posterFragment.setPoster(_link);
 		// Info
 		_infoTV.setText(info);
-	}
+	};
 
 	//Clear text
 	public void clearInfo (){
@@ -100,7 +109,7 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_runtimeTV.setText("");
 		_criticsTV.setText("");
 		_infoTV.setText("");
-	}
+	};
 
 	@Override
 	public void onClick(View v) {
@@ -112,11 +121,13 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putString("HEADER", _header);
 		savedInstanceState.putString("TITLE", _titleTV.getText().toString());
 		savedInstanceState.putString("YEAR", _yearTV.getText().toString());
 		savedInstanceState.putString("MPAA", _mpaaTV.getText().toString());
 		savedInstanceState.putString("RUNTIME", _runtimeTV.getText().toString());
 		savedInstanceState.putString("CRITICS", _criticsTV.getText().toString());
+		savedInstanceState.putString("LINK", _link);
 		savedInstanceState.putString("INFO", _infoTV.getText().toString());
 
 	}

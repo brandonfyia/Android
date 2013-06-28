@@ -185,7 +185,7 @@ public class MovieSearch extends Activity implements
 					String temp = new String(cursor.getString(2));
 					Log.i("Cursor", temp);
 					//Display Results
-//					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
+					_searchFragment.displaySearchAndHeader("Movie Found!", cursor.getString(1));
 					_posterFragment.displayPoster(cursor.getString(6));
 					_infoFragment.displayResults(
 							cursor.getString(1), cursor.getString(2),
@@ -203,11 +203,6 @@ public class MovieSearch extends Activity implements
 	// Web Stuff
 	@SuppressLint("HandlerLeak")
 	public void webHandler(String movie) {
-		
-		// Clear old data
-				_infoFragment.clearInfo();
-				_posterFragment.clearPoster();
-				
 		// HTTP Service Handler
 		Handler webHandler = new Handler() {
 
