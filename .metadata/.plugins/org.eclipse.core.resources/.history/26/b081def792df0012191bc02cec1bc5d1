@@ -17,6 +17,7 @@ import com.example.java1week2_4.R;
 
 public class MovieInfoFragment extends Fragment implements OnClickListener {
 
+	Context _context;
 	TextView _titleTV;
 	TextView _yearTV;
 	TextView _mpaaTV;
@@ -25,7 +26,8 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	TextView _infoTV;
 	MovieSearchFragment _searchFragment;
 	MoviePosterFragment _posterFragment;
-
+	String _link;
+	String _header;
 
 
 	@Override
@@ -40,6 +42,7 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		View view = inflater.inflate(R.layout.movie_search, container);
 
 		// Set Defaults for variables
+		_context = getActivity();
 		_titleTV = (TextView) view.findViewById(R.id.titleTV);
 		_yearTV = (TextView) view.findViewById(R.id.yearTV);
 		_mpaaTV = (TextView) view.findViewById(R.id.mpaaTV);

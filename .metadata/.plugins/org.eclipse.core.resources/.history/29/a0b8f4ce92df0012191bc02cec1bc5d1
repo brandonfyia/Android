@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_horizontal_margin" >
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/header_default"
+        android:gravity="center"
+        android:textColor="#ffffffff"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/searchField"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint" 
+            android:text="Toy Story"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="vertical" >
+            
+            <com.loopj.android.image.SmartImageView
+                android:id="@+id/posterIV"
+                style="@style/GridAnswerText"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                style="@style/GridLabelText"
+                android:layout_gravity="left"
+                android:text="@string/title" />
+
+            <TextView
+                android:id="@+id/titleTV"
+                style="@style/GridAnswerText"
+                android:layout_gravity="left"
+                android:text="TEST" />
+
+            <TextView
+                style="@style/GridLabelText"
+                android:layout_gravity="left"
+                android:text="@string/year" />
+
+            <TextView
+                android:id="@+id/yearTV"
+                style="@style/GridAnswerText"
+                android:layout_gravity="left" />
+
+            <TextView
+                style="@style/GridLabelText"
+                android:layout_gravity="left"
+                android:text="@string/mpaa_rating" />
+
+            <TextView
+                android:id="@+id/mpaaTV"
+                style="@style/GridAnswerText"
+                android:layout_gravity="left" />
+
+            <TextView
+                style="@style/GridLabelText"
+                android:layout_gravity="left"
+                android:text="@string/runtime" />
+
+            <TextView
+                android:id="@+id/runtimeTV"
+                style="@style/GridAnswerText"
+                android:layout_gravity="left" />
+
+            <TextView
+                style="@style/GridLabelText"
+                android:layout_gravity="left"
+                android:text="@string/critics_consensus" />
+
+            <TextView
+                android:id="@+id/criticsTV"
+                style="@style/GridAnswerText"
+                android:layout_gravity="left" />
+            
+            <TextView
+                style="@style/GridLabelText"
+                android:layout_gravity="left"
+                android:text="@string/info" />
+            
+          	<TextView
+                android:id="@+id/infoTV"
+                style="@style/GridAnswerText"
+                android:layout_gravity="left" 
+                android:textColor="#4141F2"/>
+            
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -25,7 +25,8 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	TextView _infoTV;
 	MovieSearchFragment _searchFragment;
 	MoviePosterFragment _posterFragment;
-
+	String _link;
+	String _header;
 
 
 	@Override
