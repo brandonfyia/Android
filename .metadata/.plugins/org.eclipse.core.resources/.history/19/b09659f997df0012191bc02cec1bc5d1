@@ -10,7 +10,7 @@
         android:orientation="vertical" >
 
         <fragment
-            android:id="@+id/fragmentMovieSearch"
+            android:id="@+id/fragmentMoviePoster"
             android:name="com.example.movieInfo.MovieSearchFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -24,15 +24,15 @@
         android:baselineAligned="false">
 
         <fragment
-            android:id="@+id/fragmentMoviePoster"
-            android:name="com.example.movieInfo.MoviePosterFragment"
+            android:id="@+id/fragmentMovieSearch"
+            android:name="com.example.movieInfo.MovieInfoFragment"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
         <fragment
             android:id="@+id/fragmentMovieInfo"
-            android:name="com.example.movieInfo.MovieInfoFragment"
+            android:name="com.example.movieInfo.MoviePosterFragment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1" />

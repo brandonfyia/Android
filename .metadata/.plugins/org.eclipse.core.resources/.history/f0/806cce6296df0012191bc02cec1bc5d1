@@ -21,6 +21,8 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 	EditText _searchField;
 	TextView _header;
 	ProgressDialog _pDialog;
+	MovieInfoFragment _infoFragment;
+	MoviePosterFragment _posterFragment;
 
 	public interface onGOClicked {
 
@@ -60,7 +62,10 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 	}
 
 	@Override
-	public void onClick(View v) { 
+	public void onClick(View v) {
+
+		_infoFragment = (MovieInfoFragment) getFragmentManager().findFragmentById(R.id.fragmentMovieInfo);
+		_posterFragment = (MoviePosterFragment) getFragmentManager().findFragmentById(R.id.fragmentMoviePoster);
 		
 		Log.i("CLICK HANDLER", _searchField.getText().toString());
 
@@ -69,7 +74,7 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_pDialog.setMessage("Fetching data");
 		_pDialog.setIndeterminate(true);
 		_pDialog.setCancelable(false);
-		_pDialog.show();
+//		_pDialog.show();
 
 
 		parentActivity.webHandler(_searchField.getText().toString());

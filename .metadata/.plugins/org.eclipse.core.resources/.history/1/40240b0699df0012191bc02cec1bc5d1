@@ -69,7 +69,7 @@ public class MovieSearchFragment extends Fragment implements OnClickListener {
 		_pDialog.setMessage("Fetching data");
 		_pDialog.setIndeterminate(true);
 		_pDialog.setCancelable(false);
-		_pDialog.show();
+//		_pDialog.show();
 
 
 		parentActivity.webHandler(_searchField.getText().toString());

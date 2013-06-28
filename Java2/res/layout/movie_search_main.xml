@@ -10,7 +10,7 @@
         android:orientation="vertical" >
 
         <fragment
-            android:id="@+id/fragmentSearchPoster"
+            android:id="@+id/fragmentMovieSearch"
             android:name="com.example.movieInfo.MovieSearchFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

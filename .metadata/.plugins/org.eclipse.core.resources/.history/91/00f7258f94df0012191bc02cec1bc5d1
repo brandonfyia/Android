@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.inputmethod.InputMethodManager;
@@ -47,7 +48,7 @@ public class MovieSearch extends Activity implements
 	Context _context;
 	Boolean _connected = false;
 	JSONObject _json;
-	MovieInfoFragment     _infoFragment;
+	MovieInfoFragment _infoFragment;
 	MovieSearchFragment _searchFragment;
 	MoviePosterFragment _posterFragment;
 
@@ -78,6 +79,11 @@ public class MovieSearch extends Activity implements
 		if (savedInstanceState != null) {
 			// Restore old Values
 			_JSONString = savedInstanceState.getString("JSON");
+			/*
+			 * displayResults(String header, String title, String year, String
+			 * mpaa, String runtime, String critics, String poster, String info)
+			 */
+
 		}
 
 		// Detect Network connection
@@ -124,6 +130,11 @@ public class MovieSearch extends Activity implements
 		}
 	};
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -142,6 +153,14 @@ public class MovieSearch extends Activity implements
 			}
 		};
 	};
+
+	@Override
+	protected void onSaveInstanceState(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putString("JSON", _JSONString);
+
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -211,7 +230,7 @@ public class MovieSearch extends Activity implements
 							toast.show();	
 							_searchFragment.displaySearchAndHeader("Try Again", null);
 							// Close Progress Bar
-							_searchFragment.closeProgressBar();
+//							_searchFragment.closeProgressBar();
 						} else {
 
 							// Loop through a JSON Array and get Movie
@@ -233,7 +252,7 @@ public class MovieSearch extends Activity implements
 								movieList.add(displayMap);
 							}
 							// Close Progress Bar
-							_searchFragment.closeProgressBar();
+//							_searchFragment.closeProgressBar();
 							
 							// Load Picker Activity
 							Intent nextActivity = new Intent(_context,
@@ -253,7 +272,7 @@ public class MovieSearch extends Activity implements
 						e.printStackTrace();
 						_searchFragment.displaySearchAndHeader("No info found. Please double check that the movie title was entered correctly", null);
 						// Close Progress Bar
-						_searchFragment.closeProgressBar();
+//						_searchFragment.closeProgressBar();
 
 					}
 				}
@@ -273,14 +292,6 @@ public class MovieSearch extends Activity implements
 		inputManager.hideSoftInputFromWindow(
 				getCurrentFocus().getWindowToken(),
 				InputMethodManager.HIDE_NOT_ALWAYS);
-
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putString("JSON", _JSONString);
 
 	}
 }

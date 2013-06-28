@@ -22,6 +22,8 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	TextView _runtimeTV;
 	TextView _criticsTV;
 	TextView _infoTV;
+	MovieSearchFragment _searchFragment;
+	MoviePosterFragment _posterFragment;
 
 
 
@@ -43,8 +45,6 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 		_runtimeTV = (TextView) view.findViewById(R.id.runtimeTV);
 		_criticsTV = (TextView) view.findViewById(R.id.criticsTV);
 		_infoTV = (TextView) view.findViewById(R.id.infoTV);
-		
-		_titleTV.setText("THIS IS A TEST");
 		
 		//Check for saved instance
 		if (savedInstanceState != null) {
