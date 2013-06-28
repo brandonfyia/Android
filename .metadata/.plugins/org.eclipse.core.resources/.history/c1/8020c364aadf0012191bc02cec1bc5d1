@@ -61,12 +61,12 @@ public class MovieInfoFragment extends Fragment implements OnClickListener {
 	public void displayResults(String title, String year,
 			String mpaa, String runtime, String critics, String info) {
 		Log.i("MovieInfoFragment - display Results", title);
-		_titleTV = (TextView) getActivity().findViewById(R.id.titleTV);
-		_yearTV = (TextView) getActivity().findViewById(R.id.yearTV);
-		_mpaaTV = (TextView) getActivity().findViewById(R.id.mpaaTV);
-		_runtimeTV = (TextView) getActivity().findViewById(R.id.runtimeTV);
-		_criticsTV = (TextView) getActivity().findViewById(R.id.criticsTV);
-		_infoTV = (TextView) getActivity().findViewById(R.id.infoTV);
+//		_titleTV = (TextView) getActivity().findViewById(R.id.titleTV);
+//		_yearTV = (TextView) getActivity().findViewById(R.id.yearTV);
+//		_mpaaTV = (TextView) getActivity().findViewById(R.id.mpaaTV);
+//		_runtimeTV = (TextView) getActivity().findViewById(R.id.runtimeTV);
+//		_criticsTV = (TextView) getActivity().findViewById(R.id.criticsTV);
+//		_infoTV = (TextView) getActivity().findViewById(R.id.infoTV);
 		
 		// Title
 		_titleTV.setText(title);

@@ -33,7 +33,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.java1week2_4.R;
-import com.example.java1week2_4.R.layout;
 import com.example.lib.MovieProvider;
 import com.example.lib.WebManager;
 

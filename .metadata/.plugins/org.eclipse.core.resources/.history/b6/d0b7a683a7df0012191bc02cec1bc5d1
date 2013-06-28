@@ -64,7 +64,7 @@ public class MovieSearch extends Activity implements
 		super.onCreate(savedInstanceState);
 
 		// Set Content View
-		setContentView(R.layout.movie_search_main);
+		setContentView(layout.movie_search_main);
 
 		// Set defaults for variables
 		_context = this;
