@@ -31,9 +31,9 @@ public class UrlLauncherActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(Intent.ACTION_VIEW);
-				i.setData(Uri.parse(_searchField.getText().toString()));
-				startActivity(i);
+				Intent infoIntent = new Intent(Intent.ACTION_VIEW, Uri
+						.parse(_searchField.getText().toString()));
+				startActivity(infoIntent);
 				
 			}
 		});
