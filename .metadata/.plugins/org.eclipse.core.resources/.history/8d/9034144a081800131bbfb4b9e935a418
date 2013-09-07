@@ -1,0 +1,22 @@
+package com.fyiadevelopment.holymap;
+
+import android.os.Bundle;
+import android.webkit.WebView;
+import android.app.Activity;
+
+public class BrowserActivity extends Activity {
+	
+	private WebView webView;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_browser);
+		
+		webView = (WebView) findViewById(R.id.webview);
+		webView.getSettings().setJavaScriptEnabled(true);
+		webView.loadUrl("http://www.google.com");
+		
+	}
+
+}
