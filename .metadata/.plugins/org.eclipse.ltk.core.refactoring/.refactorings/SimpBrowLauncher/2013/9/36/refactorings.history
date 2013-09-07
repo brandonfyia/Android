@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.fyiadevelopment.simpbrowlauncher.MainActivity&apos; to &apos;UrlLauncherActivity&apos;&#x0A;- Original project: &apos;SimpBrowLauncher&apos;&#x0A;- Original element: &apos;com.fyiadevelopment.simpbrowlauncher.MainActivity&apos;&#x0A;- Renamed element: &apos;com.fyiadevelopment.simpbrowlauncher.UrlLauncherActivity&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;MainActivity&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.fyiadevelopment.simpbrowlauncher{MainActivity.java[MainActivity" matchStrategy="1" name="UrlLauncherActivity" qualified="false" references="true" similarDeclarations="false" stamp="1378595396863" textual="false" version="1.0"/>
+</session>
