@@ -1,11 +1,10 @@
 package com.fyiadevelopment.simpbrowlauncher;
 
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,15 +24,18 @@ public class UrlLauncherActivity extends Activity {
 		
 		_context = this;
 		_searchField = (EditText) findViewById(R.id.textBox);
+		_searchField.setText("http:www.reddit.com");
 		
 		Button goButton = (Button) findViewById(R.id.goButton);
 		goButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(Intent.ACTION_VIEW);
-				i.setData(Uri.parse(_searchField.getText().toString()));
-				startActivity(i);
+				Intent sendIntent = new Intent();
+				sendIntent.setAction(Intent.ACTION_SEND);
+				sendIntent.putExtra(Intent.EXTRA_TEXT, _searchField.getText().toString());
+				sendIntent.setType("text/plain");
+				startActivity(Intent.createChooser(sendIntent, "Choose Browser"));
 				
 			}
 		});
